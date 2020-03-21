@@ -13,6 +13,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src='Sweet_JS/sweetalert2.js'></script><script src="sweetalert2.all.min.js"></script>
+        <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js" ></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -55,7 +60,7 @@
                             <a href="profileview.jsp" class="dropdown-item">Profile</a>
                             <a href="#" class="dropdown-item">Settings</a>
                             <a href="#" class="dropdown-item">Activity log</a>
-                            <div class="dropdown-divider"></div><a href="logoutview.jsp" class="dropdown-item">Logout</a>
+                            <div class="dropdown-divider"></div><a href="logoutview.jsp" class="dropdown-item" onclick="cnfrm()">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -90,8 +95,11 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="sidebar-list-item"><a href="logoutview.jsp" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Logout</span></a></li>
+                    <li class="sidebar-list-item" ><a href="logoutview.jsp" class="sidebar-link text-muted" onclick="cnfrm()"><i class="o-exit-1 mr-3 text-gray" ></i><span>Logout</span></a></li>
                 </ul>
             </div>
     </body>
+    <script>
+
+    </script>
 </html>

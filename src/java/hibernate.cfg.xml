@@ -45,7 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">sys as sysdba</property>
-    <property name="hibernate.connection.password">ryan</property>
+    <property name="hibernate.connection.password">loawki77</property>
     <property name="hibernate.connection.autocommit">true</property>
     <property name="hibernate.default_schema">HR</property>
     <property name="hibernate.current_session_context_class">thread</property>

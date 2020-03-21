@@ -5,11 +5,14 @@
  */
 package tools;
 
+import dao.GenericDao;
+import dao.IGeneric;
 import java.text.ParseException;
 
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
+import models.Useraccount;
 
 /**
  *
@@ -18,8 +21,9 @@ import javax.mail.internet.*;
 public class ManualTest {
 
     public static void main(String[] args) {
-//        String pw_hash = BCrypt.hashpw("test", BCrypt.gensalt());
-//        System.out.println(pw_hash);
+        IGeneric<Useraccount> generic = new GenericDao<>();
+        String pw_hash = BCrypt.hashpw("test", BCrypt.gensalt());
+        generic.manageData(new Useraccount("atlanticaid2@gmail.com", pw_hash, 'Y'), "", "", new String(), true, false);
     }
 
 }

@@ -142,18 +142,57 @@ public class UserServlet extends HttpServlet {
         return listUser != null;
     }
 
-    public String getStatus(String username) {
+    public boolean getStatus(String username) {
         listUser = generic.manageData(new Useraccount(), "username", username, new String(), false, false);
-        System.out.println(listUser.get(0).getStatus());
-        if (listUser.get(0).getStatus() == null) {
-            return "not activated";
+        if (listUser.get(0).getStatus() == 'N') {
+            return false;
         } else {
-            return "activated";
+            return true;
         }
     }
 
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
+        System.out.println(getUsername(username));
+        try {
+            if (username.isEmpty() || password.isEmpty()) {
+                errorAlert(request, response, "field cannot empty");
+            } else {
+                if (!getUsername(username)) {
+                    errorAlert(request, response, "email not found");
+                } else {
+                    if (!BCrypt.checkpw(password, getPassword(username))) {
+                        errorAlert(request, response, "wrong password");
+                    } else {
+                        if (!getStatus(username)) {
+                            errorAlert(request, response, "account not activated");
+                        } else {
+                            HttpSession session = request.getSession();
+                            session.setAttribute("currentSessionUser", username);
+                            response.sendRedirect("mainview.jsp");
+                        }
+                    }
+                }
+            }
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void errorAlert(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException, ServletException {
+        PrintWriter out = response.getWriter();
+        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+        out.println("<script>");
+        out.println("$(document).ready(function () {");
+        out.println("swal ( '" + msg + "' ,  ' ' ,  'error' ).then(function() {\n"
+                + "    window.location = 'loginview.jsp';\n"
+                + "});");
+        out.println("$  });");
+        out.println("</script>");
+        RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
+        rd.include(request, response);
     }
 
     public static void send(String from, String password, String to, String sub, String msg, String filename) {
@@ -253,7 +292,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         generic.manageData(new Useraccount(username, getPassword(username), 'Y'), "", "", new String(), true, false);
         response.sendRedirect("loginview.jsp");
