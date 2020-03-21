@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="95bc1054-b543-45ac-a0ef-cc5bb88d4d25">
+	<property name="ireport.zoom" value="2.853116706110006"/>
+	<property name="ireport.x" value="709"/>
+	<property name="ireport.y" value="171"/>
+	<queryString>
+		<![CDATA[SELECT
+     COUNTRIES."COUNTRY_ID" AS COUNTRIES_COUNTRY_ID,
+     COUNTRIES."COUNTRY_NAME" AS COUNTRIES_COUNTRY_NAME,
+     REGIONS."REGION_NAME" AS REGIONS_REGION_NAME
+FROM
+     "HR"."REGIONS" REGIONS INNER JOIN "HR"."COUNTRIES" COUNTRIES ON REGIONS."REGION_ID" = COUNTRIES."REGION_ID"]]>
+	</queryString>
+	<field name="COUNTRIES_COUNTRY_ID" class="java.lang.String"/>
+	<field name="COUNTRIES_COUNTRY_NAME" class="java.lang.String"/>
+	<field name="REGIONS_REGION_NAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="163" height="34" uuid="289ff3bb-e218-489d-a96a-7a4486d19c48"/>
+				<textElement>
+					<font fontName="Agency FB" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Country Report]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top">
+				<reportElement mode="Transparent" x="465" y="0" width="90" height="79" forecolor="#000000" backcolor="#FFFFFF" uuid="28bdf3c6-9914-4c83-96e1-24ea400af31c"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA["D:\\METRODATA\\Tugas\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="164" y="0" width="249" height="40" uuid="9d51422c-db85-4c10-906a-1a9305c4b690"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[METRODATA - BOOTCAMP34]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="455" y="20" width="100" height="20" uuid="424329d0-94b6-47e2-bf98-1aaf4b0e93aa"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="34" y="18" width="100" height="20" uuid="beb455d9-af62-43f3-8aa3-e4bbd4f4d888"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="223" y="18" width="100" height="20" uuid="1baffd2f-1f3b-4aff-a152-833ba859a614"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="413" y="18" width="100" height="20" uuid="4d4833e2-c024-4fb5-bd38-427a69fa385c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Region]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="10" width="100" height="20" uuid="a171e03d-4459-4388-a9ad-7600ddcc8f04"/>
+				<textFieldExpression><![CDATA[$F{COUNTRIES_COUNTRY_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="223" y="10" width="100" height="20" uuid="f6e10da6-db56-4183-bcae-293cf3f143e0"/>
+				<textFieldExpression><![CDATA[$F{COUNTRIES_COUNTRY_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="10" width="100" height="20" uuid="46f29620-347d-418a-91fb-de6e72319223"/>
+				<textFieldExpression><![CDATA[$F{REGIONS_REGION_NAME}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="35ed2e10-6584-43d6-8cce-e84d67677f75"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="433" y="0" width="80" height="20" uuid="76a5ba5b-0e5a-41c9-88ac-32fe1a0d562a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="0" width="40" height="20" uuid="fe7d7f03-13b8-465a-9b70-6b29bc261695"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

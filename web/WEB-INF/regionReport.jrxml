@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ee80415c-4be4-4689-a375-2fb8d51bb783">
+	<property name="ireport.zoom" value="1.9487171000000063"/>
+	<property name="ireport.x" value="193"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     REGIONS."REGION_ID" AS REGIONS_REGION_ID,
+     REGIONS."REGION_NAME" AS REGIONS_REGION_NAME
+FROM
+     "HR"."REGIONS" REGIONS]]>
+	</queryString>
+	<field name="REGIONS_REGION_ID" class="java.math.BigDecimal"/>
+	<field name="REGIONS_REGION_NAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="163" height="34" uuid="2b4779e9-20cd-49e7-a9f1-8914049897e5"/>
+				<textElement>
+					<font fontName="Agency FB" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Region Report]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top">
+				<reportElement mode="Transparent" x="465" y="0" width="90" height="79" forecolor="#000000" backcolor="#FFFFFF" uuid="faf1cb6b-0f8c-4ad9-87e3-7072a267bb37"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA["D:\\METRODATA\\Tugas\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="163" y="0" width="249" height="35" uuid="0fb59c00-773e-497b-ad71-6c8b4b042349"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Book Antiqua" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[METRODATA - BOOTCAMP34]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="464" y="15" width="91" height="20" uuid="050e6243-fb87-4ef0-b992-c02a0037a231"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="15" width="100" height="20" uuid="31857f8b-9502-4bd1-b320-1356567cf29b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="15" width="100" height="20" uuid="22b22536-384c-4d6c-95cf-89c08792c2b7"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="27" y="8" width="100" height="20" uuid="962bdb0a-2a4c-4a82-96ee-8aec61c4f36c"/>
+				<textFieldExpression><![CDATA[$F{REGIONS_REGION_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="216" y="8" width="100" height="20" uuid="4eae446d-a664-4495-ac35-e86f3cbc3408"/>
+				<textFieldExpression><![CDATA[$F{REGIONS_REGION_NAME}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="5bfec435-9b7f-4683-9fba-472bd9c3923d"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="434" y="0" width="80" height="20" uuid="03a2e367-6f5c-4b6f-8572-ca4a4dffb4ce"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="514" y="0" width="40" height="20" uuid="045e62be-4583-4aed-96a1-bbf26fd60e67"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
