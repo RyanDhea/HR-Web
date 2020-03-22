@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a89b1ad9-4e54-402e-90ce-6d644cb7b77e">
 	<property name="ireport.zoom" value="2.593742460100003"/>
-	<property name="ireport.x" value="530"/>
+	<property name="ireport.x" value="229"/>
 	<property name="ireport.y" value="76"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -32,10 +32,9 @@ FROM
 				</textElement>
 				<text><![CDATA[Location Report]]></text>
 			</staticText>
-			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top">
-				<reportElement mode="Transparent" x="465" y="0" width="90" height="79" forecolor="#000000" backcolor="#FFFFFF" uuid="068f8ff1-9f37-4f24-9f8a-4685af808141"/>
-				<graphicElement fill="Solid"/>
-				<imageExpression><![CDATA["D:\\METRODATA\\Tugas\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+			<image>
+				<reportElement x="451" y="0" width="104" height="79" uuid="872d19c2-5eb0-4605-ae24-0eddd01ce3c4"/>
+				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

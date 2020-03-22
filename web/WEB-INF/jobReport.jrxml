@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f7e16aa5-8163-4686-a004-4d661f4d2e81">
 	<property name="ireport.zoom" value="2.8481237518743274"/>
-	<property name="ireport.x" value="736"/>
-	<property name="ireport.y" value="128"/>
+	<property name="ireport.x" value="385"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT
      JOBS."JOB_ID" AS JOBS_JOB_ID,
@@ -28,10 +28,9 @@ FROM
 				</textElement>
 				<text><![CDATA[Job Report]]></text>
 			</staticText>
-			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top">
-				<reportElement mode="Transparent" x="465" y="0" width="90" height="79" forecolor="#000000" backcolor="#FFFFFF" uuid="ad363dab-0411-4a95-9d2e-6ffcdfd3f46f"/>
-				<graphicElement fill="Solid"/>
-				<imageExpression><![CDATA["D:\\METRODATA\\Tugas\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+			<image>
+				<reportElement x="451" y="0" width="104" height="79" uuid="787fa343-25de-4914-81dd-559e0511f751"/>
+				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

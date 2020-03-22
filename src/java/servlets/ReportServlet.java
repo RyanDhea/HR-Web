@@ -47,7 +47,6 @@ public class ReportServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect(request.getContextPath() + "/header.jsp");
         }
     }
 
