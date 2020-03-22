@@ -248,7 +248,7 @@ public class UserServlet extends HttpServlet {
             out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
             out.println("<script>");
             out.println("$(document).ready(function () {");
-            out.println("swal ( 'Please Check Your Email' ,  ' ' ,  'success' ).then(function() {\n"
+            out.println("swal ( 'please check your email to check your password' ,  ' ' ,  'success' ).then(function() {\n"
                     + "    window.location = 'loginview.jsp';\n"
                     + "});");
             out.println("$  });");
