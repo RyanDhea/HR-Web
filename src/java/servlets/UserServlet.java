@@ -243,7 +243,18 @@ public class UserServlet extends HttpServlet {
             String htmlFile = "D:\\kerja online\\templateResetPassword.html";
             String message = "click to reset password : " + "http://localhost:8084/HR-Web/forgotview.jsp?username=" + username;
             send("bootcamp34mii@gmail.com", "Bootcamp34", username, "reset password", message, htmlFile);
-            response.sendRedirect("loginview.jsp");
+            PrintWriter out = response.getWriter();
+            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function () {");
+            out.println("swal ( 'Please Check Your Email' ,  ' ' ,  'success' ).then(function() {\n"
+                    + "    window.location = 'loginview.jsp';\n"
+                    + "});");
+            out.println("$  });");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
+            rd.include(request, response);
         } else {
             PrintWriter out = response.getWriter();
             out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
