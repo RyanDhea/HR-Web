@@ -120,7 +120,7 @@ public class EmployeeServlet extends HttpServlet {
         return (generic.manageData(new Employee(), "employeeId", id, "", false, false) != null);
     }
 
-    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+   public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("id");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
@@ -137,13 +137,38 @@ public class EmployeeServlet extends HttpServlet {
                     phone, toDate(hiredate), (new Job(job)), new BigDecimal(salary), new BigDecimal(comm),
                     (new Employee(new Integer(manager))), new Department(new Short(department))), "", "",
                     0, true, false);
+            PrintWriter out = response.getWriter();
+            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function () {");
+            out.println("swal ( 'Data has been saved' ,  ' ' ,  'success' ).then(function() {\n"
+                    + "    window.location = 'employeeview.jsp';\n"
+                    + "});");
+            out.println("$  });");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("/employeeview.jsp");
+            rd.include(request, response);
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+       public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("id");
+        System.out.println(id);
         generic.manageData(new Employee(new Integer(id)), "", "", new Integer(id), true, true);
+        PrintWriter out = response.getWriter();
+        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+        out.println("<script>");
+        out.println("$(document).ready(function () {");
+        out.println("swal ( 'Data has been deleted' ,  ' ' ,  'success' ).then(function() {\n"
+                + "    window.location = 'employeeview.jsp';\n"
+                + "});");
+        out.println("$  });");
+        out.println("</script>");
+        RequestDispatcher rd = request.getRequestDispatcher("/employeeview.jsp");
+        rd.include(request, response);
     }
 }
