@@ -180,6 +180,7 @@ public class UserServlet extends HttpServlet {
             ex.printStackTrace();
         }
     }
+
     public void errorAlert(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
         out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
@@ -237,7 +238,26 @@ public class UserServlet extends HttpServlet {
     }
 
     public void sendForgot(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+        String username = request.getParameter("username");
+        if (getUsername(username)) {
+            String htmlFile = "D:\\kerja online\\templateResetPassword.html";
+            String message = "click to reset password : " + "http://localhost:8084/HR-Web/forgotview.jsp?username=" + username;
+            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "reset password", message, htmlFile);
+            response.sendRedirect("loginview.jsp");
+        } else {
+            PrintWriter out = response.getWriter();
+            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function () {");
+            out.println("swal ( 'Email not found' ,  ' ' ,  'error' ).then(function() {\n"
+                    + "    window.location = 'loginview.jsp';\n"
+                    + "});");
+            out.println("$  });");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
+            rd.include(request, response);
+        }
     }
 
     public void sendConfirm(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -292,7 +312,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         generic.manageData(new Useraccount(username, getPassword(username), 'Y'), "", "", new String(), true, false);
         response.sendRedirect("loginview.jsp");
@@ -302,7 +322,7 @@ public void save(HttpServletRequest request, HttpServletResponse response) throw
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
-        generic.manageData(new Useraccount(username, pw_hash), "", "", new String(), true, false);
+        generic.manageData(new Useraccount(username, pw_hash, 'Y'), "", "", new String(), true, false);
         response.sendRedirect("loginview.jsp");
     }
 }
