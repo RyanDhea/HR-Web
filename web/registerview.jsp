@@ -39,7 +39,7 @@
                 <h1 class="text-base text-primary text-uppercase mb-4">HR - Management</h1>
                 <h2 class="mb-4">User Account</h2>
                 <p class="text-muted">Please enter your data correctly</p>
-                <form id="loginForm" name="myForm" required action="${pageContext.servletContext.contextPath}/userservlet?sendConfirm" method="POST" class="mt-4">
+                <form id="loginForm" name="myForm" required action="VerifyServlet" method="POST" class="mt-4">
                     <div class="form-group mb-4">
                         <input type="email" id="username" name="username" placeholder="Email address" class="form-control border-0 shadow form-control-lg validate">
                     </div>
@@ -47,7 +47,7 @@
                         <input type="password" id="password" name="password" placeholder="Password" class="form-control border-0 shadow form-control-lg text-violet validate">
                     </div>
                     <div class="form-group mb-4">
-                        <div class="g-recaptcha validate" id="recaptcha" data-type="image" data-sitekey="6LckhuIUAAAAAOQ48g7l5djOCSoyWPu8rEXyxKED"></div>
+                        <div class="g-recaptcha validate" id="recaptcha" data-type="image" data-sitekey="6LdsNOMUAAAAABqKLZtM-SiNdA4hJQMEhE1Ik4C6"></div>
                     </div>
                     <button type="submit" name="submit" id="submit" class="btn btn-primary shadow px-5">Save</button>
                     <div style="text-align: right">
