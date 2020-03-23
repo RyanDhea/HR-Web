@@ -36,7 +36,7 @@ import tools.BCrypt;
 
 /**
  *
- * @author JOE
+ * @author VINTHERA
  */
 public class UserServlet extends HttpServlet {
 
