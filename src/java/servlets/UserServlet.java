@@ -150,31 +150,30 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    public String getName(String username) {
+        listUser = generic.manageData(new Useraccount(), "username", username, new String(), false, false);
+        return listUser.get(0).getFirstname() + " " + listUser.get(0).getLastname();
+    }
+
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
+        String name = getName(username);
         System.out.println(getUsername(username));
         try {
             if (username.isEmpty() || password.isEmpty()) {
                 errorAlert(request, response, "field cannot empty");
+            } else if (!getUsername(username)) {
+                errorAlert(request, response, "email not found");
+            } else if (!BCrypt.checkpw(password, getPassword(username))) {
+                errorAlert(request, response, "wrong password");
+            } else if (!getStatus(username)) {
+                errorAlert(request, response, "account not activated");
             } else {
-                if (!getUsername(username)) {
-                    errorAlert(request, response, "email not found");
-                } else {
-                    if (!BCrypt.checkpw(password, getPassword(username))) {
-                        errorAlert(request, response, "wrong password");
-                    } else {
-                        if (!getStatus(username)) {
-                            errorAlert(request, response, "account not activated");
-                        } else {
-                            HttpSession session = request.getSession();
-                            session.setAttribute("currentSessionUser", username);
-                            response.sendRedirect("mainview.jsp");
-                        }
-                    }
-                }
+                HttpSession session = request.getSession();
+                session.setAttribute("currentSessionUser", name);
+                response.sendRedirect("mainview.jsp");
             }
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }

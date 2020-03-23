@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package models;
 
 import java.io.Serializable;
@@ -17,13 +12,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JOE
+ * @author Juang Nasution
  */
 @Entity
 @Table(name = "USERACCOUNT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Useraccount.findAll", query = "SELECT u FROM Useraccount u")})
+    @NamedQuery(name = "Useraccount.findAll", query = "SELECT u FROM Useraccount u")
+    , @NamedQuery(name = "Useraccount.findByUsername", query = "SELECT u FROM Useraccount u WHERE u.username = :username")
+    , @NamedQuery(name = "Useraccount.findByPassword", query = "SELECT u FROM Useraccount u WHERE u.password = :password")
+    , @NamedQuery(name = "Useraccount.findByStatus", query = "SELECT u FROM Useraccount u WHERE u.status = :status")
+    , @NamedQuery(name = "Useraccount.findByFirstname", query = "SELECT u FROM Useraccount u WHERE u.firstname = :firstname")
+    , @NamedQuery(name = "Useraccount.findByLastname", query = "SELECT u FROM Useraccount u WHERE u.lastname = :lastname")})
 public class Useraccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,30 +34,25 @@ public class Useraccount implements Serializable {
     @Basic(optional = false)
     @Column(name = "PASSWORD")
     private String password;
+    @Basic(optional = false)
     @Column(name = "STATUS")
     private Character status;
+    @Column(name = "FIRSTNAME")
+    private String firstname;
+    @Column(name = "LASTNAME")
+    private String lastname;
 
     public Useraccount() {
-    }
-
-    public Useraccount(String username, String password, Character status) {
-        this.username = username;
-        this.password = password;
-        this.status = status;
     }
 
     public Useraccount(String username) {
         this.username = username;
     }
 
-    public Useraccount(String username, Character status) {
-        this.username = username;
-        this.status = status;
-    }
-
-    public Useraccount(String username, String password) {
+    public Useraccount(String username, String password, Character status) {
         this.username = username;
         this.password = password;
+        this.status = status;
     }
 
     public String getUsername() {
@@ -82,6 +77,22 @@ public class Useraccount implements Serializable {
 
     public void setStatus(Character status) {
         this.status = status;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     @Override

@@ -1021,11 +1021,11 @@ exists or setup the property manually. For example like this:
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
         <copyfiles files="${libs.hibernate4-support.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.jpa2-persistence.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${file.reference.javax.json-1.0.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <!--<copyfiles files="${file.reference.javax.json-1.0.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>-->
         <copyfiles files="${file.reference.activation.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.mail.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.iReport.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${libs.ojdbc.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <!--<copyfiles files="${libs.ojdbc.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>-->
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>

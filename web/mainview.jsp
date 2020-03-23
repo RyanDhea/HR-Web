@@ -26,7 +26,10 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     </head>
     <body>
-        <% String name = (String) session.getAttribute("currentSessionUser");%>
+        <% String name = (String) session.getAttribute("currentSessionUser");
+            if(name == null){
+                response.sendRedirect("loginview.jsp");
+         } %>
         <!--<a id="alert" class="alert"></a>-->
         <!--        <script>
                     $(document).ready(function () {
@@ -153,5 +156,4 @@
             </div>
         </div>
     </footer>
-
 </html>
