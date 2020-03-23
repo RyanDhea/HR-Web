@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label text-uppercase">Password</label>
-                                    <input type="password" placeholder="Enter password" name="password" id="password" class="form-control">
+                                    <input type="password" placeholder="Enter password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" id="password" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label text-uppercase">Confirm Password</label>

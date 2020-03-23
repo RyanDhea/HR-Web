@@ -44,7 +44,7 @@
                         <input type="email" id="username" name="username" placeholder="Email address" class="form-control border-0 shadow form-control-lg validate">
                     </div>
                     <div class="form-group mb-4">
-                        <input type="password" id="password" name="password" placeholder="Password" class="form-control border-0 shadow form-control-lg text-violet validate">
+                        <input type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" placeholder="Password" class="form-control border-0 shadow form-control-lg text-violet validate">
                     </div>
                     <div class="form-group mb-4">
                         <div class="g-recaptcha validate" id="recaptcha" data-type="image" data-sitekey="6LdsNOMUAAAAABqKLZtM-SiNdA4hJQMEhE1Ik4C6"></div>

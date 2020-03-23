@@ -238,8 +238,8 @@ public class UserServlet extends HttpServlet {
 
     public void sendForgot(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
-        if (getUsername(username)) {
-            String htmlFile = "D:\\kerja online\\templateResetPassword.html";
+        if (getUsername(username) && getStatus(username)) {
+            String htmlFile = "D:\\METRODATA\\Tugas\\HR-Web\\web\\templateResetPassword.html";
             String message = "click to reset password : " + "http://localhost:8084/HR-Web/forgotview.jsp?username=" + username;
             send("bootcamp34mii@gmail.com", "Bootcamp34", username, "reset password", message, htmlFile);
             PrintWriter out = response.getWriter();
@@ -248,6 +248,19 @@ public class UserServlet extends HttpServlet {
             out.println("<script>");
             out.println("$(document).ready(function () {");
             out.println("swal ( 'please check your email to check your password' ,  ' ' ,  'success' ).then(function() {\n"
+                    + "    window.location = 'loginview.jsp';\n"
+                    + "});");
+            out.println("$  });");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
+            rd.include(request, response);
+        } else if (getUsername(username) && (!getStatus(username))) {
+            PrintWriter out = response.getWriter();
+            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function () {");
+            out.println("swal ( 'Your account is not activated' ,  ' ' ,  'error' ).then(function() {\n"
                     + "    window.location = 'loginview.jsp';\n"
                     + "});");
             out.println("$  });");
