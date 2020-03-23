@@ -102,6 +102,7 @@ public class ManualTest {
         map.put("name", "Jody");
         map.put("login", "http://localhost:8084/HR-Web/loginview.jsp");
         map.put("activate", "http://localhost:8084/HR-Web/loginview.jsp");
+        map.put("reset", "http://localhost:8084/HR-Web/loginview.jsp");
         list.add( map );
 
         /*
