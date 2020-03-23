@@ -81,7 +81,6 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            sendConfirm(request, response);
 //        processRequest(request, response);
     }
 
@@ -103,8 +102,8 @@ public class UserServlet extends HttpServlet {
             case "sendForgot":
                 sendForgot(request, response);
                 break;
-            case "sendConfirm":
-                sendConfirm(request, response);
+            case "verify":
+                verify(request, response);
                 break;
             case "save":
                 save(request, response);
@@ -273,7 +272,6 @@ public class UserServlet extends HttpServlet {
 
     public void sendConfirm(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
-        System.out.println(username);
         String password = request.getParameter("password");
         if (username.isEmpty() || password.isEmpty()) {
             PrintWriter out = response.getWriter();
@@ -304,8 +302,7 @@ public class UserServlet extends HttpServlet {
         } else {
             String htmlFile = "D:\\METRODATA\\Tugas\\HR-Web\\web\\templateRegister.html";
             String message = "click to confirm account : " + "http://localhost:8084/HR-Web/confirmview.jsp?username=" + username;
-            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "reset password", message, htmlFile);
-            response.sendRedirect("registerview.jsp");
+            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Confirm Account", message, htmlFile);
             String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
             generic.manageData(new Useraccount(username, pw_hash, 'N'), "", "", new String(), true, false);
             PrintWriter out = response.getWriter();
@@ -314,11 +311,34 @@ public class UserServlet extends HttpServlet {
             out.println("<script>");
             out.println("$(document).ready(function () {");
             out.println("swal ( 'Please check your email for confirm account' ,  ' ' ,  'success' ).then(function() {\n"
-                    + "    window.location = 'registerview.jsp';\n"
+                    + "    window.location = 'loginview.jsp';\n"
                     + "});");
             out.println("$  });");
             out.println("</script>");
-            RequestDispatcher rd = request.getRequestDispatcher("/registerview.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
+            rd.include(request, response);
+        }
+    }
+
+    public void verify(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password");
+        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+        System.out.println(gRecaptchaResponse);
+        boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+        // get servlet config init params
+        // logging example
+        System.out.println("User=" + username + "::password=" + password + "::Captcha Verify=" + verify);
+        if (username.equals(username) && password.equals(password) && verify) {
+            sendConfirm(request, response);
+        } else {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/registerview.jsp");
+            PrintWriter out = response.getWriter();
+            if (verify) {
+                out.println("<font color=red>Either user name or password is wrong.</font>");
+            } else {
+                out.println("<font color=red>You missed the Captcha.</font>");
+            }
             rd.include(request, response);
         }
     }
@@ -336,7 +356,7 @@ public class UserServlet extends HttpServlet {
                 + "});");
         out.println("$  });");
         out.println("</script>");
-        RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/confirmview.jsp");
         rd.include(request, response);
     }
 

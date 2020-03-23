@@ -39,7 +39,7 @@
                 <h1 class="text-base text-primary text-uppercase mb-4">HR - Management</h1>
                 <h2 class="mb-4">User Account</h2>
                 <p class="text-muted">Please enter your data correctly</p>
-                <form id="loginForm" name="myForm" required action="VerifyServlet" method="POST" class="mt-4">
+                <form id="loginForm" name="myForm" required action="${pageContext.servletContext.contextPath}/userservlet?verify" method="POST" class="mt-4">
                     <div class="form-group mb-4">
                         <input type="email" id="username" name="username" placeholder="Email address" class="form-control border-0 shadow form-control-lg validate">
                     </div>
