@@ -42,9 +42,6 @@
                                     <input type="password" name="confirm_password" id="confirm_password" placeholder="Enter Confirm Password" class="form-control">
                                     <span id="message"></span>
                                 </div>
-                                <div class="form-group">
-                                    <div class="g-recaptcha" data-sitekey="6LfpheIUAAAAAA7G_D9UzmyzH4l8OMZyUbQ9MmkO"></div>
-                                </div>
                                 <div class="form-group" style="text-align: right;">       
                                     <button data-target="#choose" data-toggle="modal" type="submit"class="btn btn-warning">Choose Password</button>
                                 </div>

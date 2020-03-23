@@ -103,7 +103,7 @@ public class LocationServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("id");
         String address = request.getParameter("address");
         String postal = request.getParameter("postal");
@@ -111,10 +111,33 @@ public class LocationServlet extends HttpServlet {
         String province = request.getParameter("province");
         String country = request.getParameter("country");
         generic.manageData(new Location(new Short(id), address, postal, city, province, new Country(country)), "", "", new Short("0"), true, false);
+        PrintWriter out = response.getWriter();
+        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+        out.println("<script>");
+        out.println("$(document).ready(function () {");
+        out.println("swal ( 'Data has been saved' ,  ' ' ,  'success' ).then(function() {\n"
+                + "    window.location = 'locationview.jsp';\n"
+                + "});");
+        out.println("$  });");
+        out.println("</script>");
+        RequestDispatcher rd = request.getRequestDispatcher("/locationview.jsp");
+        rd.include(request, response);
     }
-
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("id");
         generic.manageData(new Location(new Short(id)), "", "", new Short(id), true, true);
+        PrintWriter out = response.getWriter();
+        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+        out.println("<script>");
+        out.println("$(document).ready(function () {");
+        out.println("swal ( 'Data has been deleted' ,  ' ' ,  'success' ).then(function() {\n"
+                + "    window.location = 'locationview.jsp';\n"
+                + "});");
+        out.println("$  });");
+        out.println("</script>");
+        RequestDispatcher rd = request.getRequestDispatcher("/locationview.jsp");
+        rd.include(request, response);
     }
 }

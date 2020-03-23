@@ -101,16 +101,41 @@ public class JobServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+
     public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("id");
         String title = request.getParameter("title");
         String minsalary = request.getParameter("minsalary");
         String maxsalary = request.getParameter("maxsalary");
         generic.manageData(new Job(id, title, new Integer(minsalary), new Integer(maxsalary)), "", "", new String(), true, false);
+        PrintWriter out = response.getWriter();
+        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+        out.println("<script>");
+        out.println("$(document).ready(function () {");
+        out.println("swal ( 'Data has been saved' ,  ' ' ,  'success' ).then(function() {\n"
+                + "    window.location = 'jobview.jsp';\n"
+                + "});");
+        out.println("$  });");
+        out.println("</script>");
+        RequestDispatcher rd = request.getRequestDispatcher("/jobview.jsp");
+        rd.include(request, response);
     }
 
-    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+      public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String id = request.getParameter("id");
         generic.manageData(new Job(id), "", "", id, true, true);
+        PrintWriter out = response.getWriter();
+        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+        out.println("<script>");
+        out.println("$(document).ready(function () {");
+        out.println("swal ( 'Data has been deleted' ,  ' ' ,  'success' ).then(function() {\n"
+                + "    window.location = 'jobview.jsp';\n"
+                + "});");
+        out.println("$  });");
+        out.println("</script>");
+        RequestDispatcher rd = request.getRequestDispatcher("/jobview.jsp");
+        rd.include(request, response);
     }
 }
