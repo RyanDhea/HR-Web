@@ -22,6 +22,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js"></script>
@@ -45,9 +46,6 @@
                     </div>
                     <div class="form-group mb-4">
                         <input type="password" id="password" name="password" placeholder="Password" class="form-control border-0 shadow form-control-lg text-violet validate">
-                    </div>
-                    <div class="form-group mb-4">
-                        <div class="g-recaptcha validate" id="recaptcha" data-type="image" data-sitekey="6LckhuIUAAAAAOQ48g7l5djOCSoyWPu8rEXyxKED"></div>
                     </div>
                     <button type="submit" name="submit" id="submit" class="btn btn-primary shadow px-5">Save</button>
                     <div style="text-align: right">
