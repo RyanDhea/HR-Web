@@ -193,7 +193,6 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
         rd.include(request, response);
     }
-
     public static void send(String from, String password, String to, String sub, String msg, String filename) {
         //Get properties object    
         Properties props = new Properties();
