@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,7 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Useraccount.findByPassword", query = "SELECT u FROM Useraccount u WHERE u.password = :password")
     , @NamedQuery(name = "Useraccount.findByStatus", query = "SELECT u FROM Useraccount u WHERE u.status = :status")
     , @NamedQuery(name = "Useraccount.findByFirstname", query = "SELECT u FROM Useraccount u WHERE u.firstname = :firstname")
-    , @NamedQuery(name = "Useraccount.findByLastname", query = "SELECT u FROM Useraccount u WHERE u.lastname = :lastname")})
+    , @NamedQuery(name = "Useraccount.findByLastname", query = "SELECT u FROM Useraccount u WHERE u.lastname = :lastname")
+    , @NamedQuery(name = "Useraccount.findByTimer", query = "SELECT u FROM Useraccount u WHERE u.timer = :timer")})
 public class Useraccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,20 +45,24 @@ public class Useraccount implements Serializable {
     private String firstname;
     @Column(name = "LASTNAME")
     private String lastname;
+    @Column(name = "TIMER")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timer;
 
     public Useraccount() {
     }
 
-    public Useraccount(String username, String password, Character status, String firstname, String lastname) {
+    public Useraccount(String username) {
+        this.username = username;
+    }
+
+    public Useraccount(String username, String password, Character status, String firstname, String lastname, Date timer) {
         this.username = username;
         this.password = password;
         this.status = status;
         this.firstname = firstname;
         this.lastname = lastname;
-    }
-
-    public Useraccount(String username) {
-        this.username = username;
+        this.timer = timer;
     }
 
     public Useraccount(String username, String password, Character status) {
@@ -101,6 +109,14 @@ public class Useraccount implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Date getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Date timer) {
+        this.timer = timer;
     }
 
     @Override

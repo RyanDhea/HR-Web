@@ -15,6 +15,7 @@
     </head>
     <body>
         <%
+            session.removeAttribute("currentSessionUser");
             session.invalidate();
             response.sendRedirect("loginview.jsp");
         %>

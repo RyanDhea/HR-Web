@@ -29,10 +29,6 @@
                     <div class="col-lg-6 mb-4">
                         <div class="card card-body">
                             <form action="${pageContext.servletContext.contextPath}/userservlet?savePassword" method="post">
-                                <div class="form-group">       
-                                    <label class="form-control-label text-uppercase">Username</label>
-                                    <input type="text" readonly value="<%= request.getParameter("username")%>" name="username" id="username" class="form-control">
-                                </div>
                                 <div class="form-group">
                                     <label class="form-control-label text-uppercase">Password</label>
                                     <input type="password" placeholder="Enter password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" id="password" class="form-control">
@@ -43,7 +39,7 @@
                                     <span id="message"></span>
                                 </div>
                                 <div class="form-group" style="text-align: right;">       
-                                    <button data-target="#choose" data-toggle="modal" type="submit"class="btn btn-warning">Choose Password</button>
+                                    <button data-target="#choose" data-toggle="modal" type="submit"class="btn btn-warning">Set Password</button>
                                 </div>
                             </form>
                         </div>
