@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="52825e1f-fac0-4cf4-8d9f-a6abeef3ad7d">
 	<property name="ireport.zoom" value="2.593742460100004"/>
 	<property name="ireport.x" value="229"/>
-	<property name="ireport.y" value="100"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT
      DEPARTMENTS."DEPARTMENT_ID" AS DEPARTMENTS_DEPARTMENT_ID,
@@ -31,8 +31,8 @@ FROM
 				<text><![CDATA[Department Report]]></text>
 			</staticText>
 			<image>
-				<reportElement x="451" y="0" width="104" height="79" uuid="edc3962b-35c4-4fd6-8218-68d69f9f3dcc"/>
-				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+				<reportElement x="455" y="0" width="100" height="79" uuid="e2dad6b3-45e4-4755-a05d-b75dfd3f2f5d"/>
+				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

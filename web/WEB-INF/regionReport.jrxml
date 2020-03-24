@@ -25,8 +25,8 @@ FROM
 				<text><![CDATA[Region Report]]></text>
 			</staticText>
 			<image>
-				<reportElement x="450" y="0" width="104" height="79" uuid="670fc944-ba54-4dbf-93e8-0115927eca72"/>
-				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+				<reportElement x="455" y="0" width="100" height="79" uuid="558e439a-4c9c-43af-b64f-385325ade1f7"/>
+				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

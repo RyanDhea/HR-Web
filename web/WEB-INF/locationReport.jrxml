@@ -33,8 +33,8 @@ FROM
 				<text><![CDATA[Location Report]]></text>
 			</staticText>
 			<image>
-				<reportElement x="451" y="0" width="104" height="79" uuid="872d19c2-5eb0-4605-ae24-0eddd01ce3c4"/>
-				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+				<reportElement x="455" y="0" width="100" height="79" uuid="b254a7c2-6653-4b67-bb8b-96dd087e25b0"/>
+				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

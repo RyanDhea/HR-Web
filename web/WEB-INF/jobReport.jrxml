@@ -29,8 +29,8 @@ FROM
 				<text><![CDATA[Job Report]]></text>
 			</staticText>
 			<image>
-				<reportElement x="451" y="0" width="104" height="79" uuid="787fa343-25de-4914-81dd-559e0511f751"/>
-				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+				<reportElement x="455" y="0" width="100" height="79" uuid="6b47479b-680e-4fe2-b633-7eac2294d299"/>
+				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

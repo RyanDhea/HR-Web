@@ -29,8 +29,8 @@
         <servlet-class>servlets.EmployeeServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ReportServlet</servlet-name>
-        <servlet-class>servlets.ReportServlet</servlet-class>
+        <servlet-name>Report</servlet-name>
+        <servlet-class>servlets.Report</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegionServlet</servlet-name>
@@ -61,8 +61,8 @@
         <url-pattern>/employeeservlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ReportServlet</servlet-name>
-        <url-pattern>/reportservlet</url-pattern>
+        <servlet-name>Report</servlet-name>
+        <url-pattern>/report</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

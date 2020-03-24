@@ -46,8 +46,8 @@ FROM
 				<text><![CDATA[Employee Report]]></text>
 			</staticText>
 			<image>
-				<reportElement x="451" y="0" width="104" height="79" uuid="b87f9bb1-4b22-4941-86c7-d59f14e04eae"/>
-				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
+				<reportElement x="456" y="0" width="100" height="79" uuid="9b411645-c191-488c-a9b5-ce7a91027912"/>
+				<imageExpression><![CDATA["C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\WEB-INF\\asset\\logometrodata.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

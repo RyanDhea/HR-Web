@@ -222,7 +222,7 @@ public class UserServlet extends HttpServlet {
     public void sendForgot(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
         if (getUsername(username) && getStatus(username)) {
-            String htmlFile = "D:\\METRODATA\\Tugas\\HR-Web\\web\\templateResetPassword.html";
+            String htmlFile = "C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\templateResetPassword.html";
             String message = "click to reset password : " + "http://localhost:8084/HR-Web/forgotview.jsp?username=" + username;
             send("bootcamp34mii@gmail.com", "Bootcamp34", username, "reset password", message, htmlFile);
             alert(request, response, "please check your email to check your password", "success", "loginview.jsp");
@@ -242,7 +242,7 @@ public class UserServlet extends HttpServlet {
         } else if (getUsername(username)) {
             alert(request, response, "Username has already", "error", "registerview.jsp");
         } else {
-            String htmlFile = "D:\\METRODATA\\Tugas\\HR-Web\\web\\templateRegister.html";
+            String htmlFile = "C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\templateRegister.html";
             String message = "click to confirm account : " + "http://localhost:8084/HR-Web/confirmview.jsp?username=" + username;
             send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Confirm Account", message, htmlFile);
             String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());

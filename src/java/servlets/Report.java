@@ -32,7 +32,7 @@ import tools.HibernateUtil;
  *
  * @author JOE
  */
-public class ReportServlet extends HttpServlet {
+public class Report extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -64,29 +64,10 @@ public class ReportServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println(request.getQueryString());
         try {
-            switch (request.getQueryString()) {
-                case "region":
-                    report("/WEB-INF/regionReport.jrxml", request, response);
-                    break;
-                case "country":
-                    report("/WEB-INF/countryReport.jrxml", request, response);
-                    break;
-                case "location":
-                    report("/WEB-INF/locationReport.jrxml", request, response);
-                    break;
-                case "department":
-                    report("/WEB-INF/departmentReport.jrxml", request, response);
-                    break;
-                case "employee":
-                    report("/WEB-INF/employeeReport.jrxml", request, response);
-                    break;
-                case "job":
-                    report("/WEB-INF/jobReport.jrxml", request, response);
-                    break;
-            }
+           report("/WEB-INF/"+request.getQueryString()+"Report.jrxml", request, response);
 
         } catch (SQLException ex) {
-            Logger.getLogger(ReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
         }
         processRequest(request, response);
     }

@@ -86,12 +86,12 @@
                     <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#report" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>Report</span></a>
                         <div id="report" class="collapse">
                             <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/reportservlet?job"  target="_blank" class="sidebar-link text-muted pl-lg-5">Job</a></li>
-                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/reportservlet?region"  target="_blank" class="sidebar-link text-muted pl-lg-5">Region</a></li>
-                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/reportservlet?country"  target="_blank" class="sidebar-link text-muted pl-lg-5">Country</a></li>
-                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/reportservlet?location"  target="_blank" class="sidebar-link text-muted pl-lg-5">Location</a></li>
-                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/reportservlet?department"   target="_blank" class="sidebar-link text-muted pl-lg-5">Department</a></li>
-                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/reportservlet?employee"  target="_blank" class="sidebar-link text-muted pl-lg-5">Employee</a></li>
+                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/report?job"  target="_blank" class="sidebar-link text-muted pl-lg-5">Job</a></li>
+                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/report?region"  target="_blank" class="sidebar-link text-muted pl-lg-5">Region</a></li>
+                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/report?country"  target="_blank" class="sidebar-link text-muted pl-lg-5">Country</a></li>
+                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/report?location"  target="_blank" class="sidebar-link text-muted pl-lg-5">Location</a></li>
+                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/report?department"   target="_blank" class="sidebar-link text-muted pl-lg-5">Department</a></li>
+                                <li class="sidebar-list-item"><a href="${pageContext.servletContext.contextPath}/report?employee"  target="_blank" class="sidebar-link text-muted pl-lg-5">Employee</a></li>
                             </ul>
                         </div>
                     </li>
