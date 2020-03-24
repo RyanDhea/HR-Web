@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="95bc1054-b543-45ac-a0ef-cc5bb88d4d25">
 	<property name="ireport.zoom" value="1.7715610000000053"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="192"/>
 	<queryString>
 		<![CDATA[SELECT
      COUNTRIES."COUNTRY_ID" AS COUNTRIES_COUNTRY_ID,
@@ -73,17 +73,17 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="44" splitType="Stretch">
+		<band height="33" splitType="Stretch">
 			<textField>
-				<reportElement x="34" y="10" width="100" height="20" uuid="a171e03d-4459-4388-a9ad-7600ddcc8f04"/>
+				<reportElement x="34" y="7" width="100" height="20" uuid="a171e03d-4459-4388-a9ad-7600ddcc8f04"/>
 				<textFieldExpression><![CDATA[$F{COUNTRIES_COUNTRY_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="223" y="10" width="100" height="20" uuid="f6e10da6-db56-4183-bcae-293cf3f143e0"/>
+				<reportElement x="223" y="7" width="100" height="20" uuid="f6e10da6-db56-4183-bcae-293cf3f143e0"/>
 				<textFieldExpression><![CDATA[$F{COUNTRIES_COUNTRY_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="413" y="10" width="100" height="20" uuid="46f29620-347d-418a-91fb-de6e72319223"/>
+				<reportElement x="413" y="7" width="100" height="20" uuid="46f29620-347d-418a-91fb-de6e72319223"/>
 				<textFieldExpression><![CDATA[$F{REGIONS_REGION_NAME}]]></textFieldExpression>
 			</textField>
 			<line>

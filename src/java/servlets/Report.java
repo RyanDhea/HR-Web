@@ -110,7 +110,7 @@ public class Report extends HttpServlet {
             JasperReport jr = JasperCompileManager.compileReport(input);
             JasperPrint jp = JasperFillManager.fillReport(jr, null, c);
             JasperExportManager.exportReportToPdfStream(jp, response.getOutputStream());
-            response.getOutputStream().flush();
+//            response.getOutputStream().flush();
             response.getOutputStream().close();
             c.close();
         } catch (Exception e) {

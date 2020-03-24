@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="52825e1f-fac0-4cf4-8d9f-a6abeef3ad7d">
-	<property name="ireport.zoom" value="2.593742460100004"/>
-	<property name="ireport.x" value="229"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.7715610000000037"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="186"/>
 	<queryString>
 		<![CDATA[SELECT
      DEPARTMENTS."DEPARTMENT_ID" AS DEPARTMENTS_DEPARTMENT_ID,
@@ -84,24 +84,24 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="50" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="ec375616-7bba-46ee-ab64-c890f4111c87"/>
 			</line>
 			<textField>
-				<reportElement x="35" y="16" width="77" height="20" uuid="c00c3f72-47ce-4d44-a37e-edcd5552cca3"/>
+				<reportElement x="35" y="9" width="77" height="20" uuid="c00c3f72-47ce-4d44-a37e-edcd5552cca3"/>
 				<textFieldExpression><![CDATA[$F{DEPARTMENTS_DEPARTMENT_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="143" y="16" width="104" height="20" uuid="7e9395e1-2b02-4ee3-93ae-a478afa079f1"/>
+				<reportElement x="143" y="9" width="104" height="20" uuid="7e9395e1-2b02-4ee3-93ae-a478afa079f1"/>
 				<textFieldExpression><![CDATA[$F{DEPARTMENTS_DEPARTMENT_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="16" width="103" height="20" uuid="b639ae1c-3694-4869-baaf-380507b41da7"/>
+				<reportElement x="280" y="9" width="103" height="20" uuid="b639ae1c-3694-4869-baaf-380507b41da7"/>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_LAST_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="419" y="16" width="100" height="20" uuid="64b07938-2b76-441d-8936-acd8797c8a12"/>
+				<reportElement x="419" y="9" width="100" height="20" uuid="64b07938-2b76-441d-8936-acd8797c8a12"/>
 				<textFieldExpression><![CDATA[$F{LOCATIONS_CITY}]]></textFieldExpression>
 			</textField>
 		</band>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a89b1ad9-4e54-402e-90ce-6d644cb7b77e">
-	<property name="ireport.zoom" value="2.593742460100003"/>
-	<property name="ireport.x" value="229"/>
-	<property name="ireport.y" value="76"/>
+	<property name="ireport.zoom" value="1.6105100000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT
      LOCATIONS."LOCATION_ID" AS LOCATIONS_LOCATION_ID,
@@ -100,31 +100,34 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="46" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<textField>
-				<reportElement x="474" y="10" width="68" height="20" uuid="074dedfc-a658-4ed3-b6a5-33cc22d4020c"/>
+				<reportElement x="474" y="9" width="68" height="20" uuid="074dedfc-a658-4ed3-b6a5-33cc22d4020c"/>
 				<textFieldExpression><![CDATA[$F{COUNTRIES_COUNTRY_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="388" y="13" width="65" height="20" uuid="56249f68-e635-4038-b198-967a1e241b4c"/>
+				<reportElement x="388" y="10" width="65" height="20" uuid="56249f68-e635-4038-b198-967a1e241b4c"/>
 				<textFieldExpression><![CDATA[$F{LOCATIONS_STATE_PROVINCE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="304" y="13" width="66" height="20" uuid="b9b19083-f420-443d-99bd-990c6d3705d8"/>
+				<reportElement x="304" y="10" width="66" height="20" uuid="b9b19083-f420-443d-99bd-990c6d3705d8"/>
 				<textFieldExpression><![CDATA[$F{LOCATIONS_CITY}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="202" y="13" width="82" height="20" uuid="09a5605e-c07b-4ba4-973c-cc7ec4b37cc7"/>
+				<reportElement x="202" y="10" width="82" height="20" uuid="09a5605e-c07b-4ba4-973c-cc7ec4b37cc7"/>
 				<textFieldExpression><![CDATA[$F{LOCATIONS_POSTAL_CODE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="66" y="13" width="121" height="20" uuid="964f881e-17c7-4c35-8d47-676f0fe129be"/>
+				<reportElement x="66" y="10" width="121" height="20" uuid="964f881e-17c7-4c35-8d47-676f0fe129be"/>
 				<textFieldExpression><![CDATA[$F{LOCATIONS_STREET_ADDRESS}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="10" y="13" width="42" height="20" uuid="69471429-4fa6-40f8-ad29-b7300909af08"/>
+				<reportElement x="10" y="10" width="42" height="20" uuid="69471429-4fa6-40f8-ad29-b7300909af08"/>
 				<textFieldExpression><![CDATA[$F{LOCATIONS_LOCATION_ID}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="3" width="555" height="1" uuid="223112bf-34a2-4800-b86f-8fbe3717f222"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

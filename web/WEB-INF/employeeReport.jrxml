@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4006d8d8-bb97-46ea-8677-6967fd8de287">
 	<property name="ireport.zoom" value="1.7715610000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="144"/>
 	<queryString>
 		<![CDATA[SELECT
      EMPLOYEES."EMPLOYEE_ID" AS EMPLOYEES_EMPLOYEE_ID,
@@ -148,7 +148,7 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="39" splitType="Stretch">
+		<band height="32" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="10" width="19" height="20" uuid="54df5eae-059f-4cda-b3dd-5e76b592060c"/>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_EMPLOYEE_ID}]]></textFieldExpression>
@@ -193,6 +193,9 @@ FROM
 				<reportElement x="495" y="10" width="60" height="20" uuid="956b4df6-52a4-4381-9d01-63f17b9ef0e6"/>
 				<textFieldExpression><![CDATA[$F{DEPARTMENTS_DEPARTMENT_NAME}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="4" width="555" height="1" uuid="61c23ba2-002f-40a5-a4ae-0d439451f8c5"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

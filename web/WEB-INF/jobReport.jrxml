@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f7e16aa5-8163-4686-a004-4d661f4d2e81">
-	<property name="ireport.zoom" value="2.8481237518743274"/>
-	<property name="ireport.x" value="385"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.7684607682500133"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="144"/>
 	<queryString>
 		<![CDATA[SELECT
      JOBS."JOB_ID" AS JOBS_JOB_ID,
@@ -50,7 +50,7 @@ FROM
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="50" splitType="Stretch">
+		<band height="47" splitType="Stretch">
 			<staticText>
 				<reportElement x="142" y="15" width="121" height="20" uuid="51ab98d6-cbcd-4591-898d-f69483453c16"/>
 				<textElement>
@@ -82,21 +82,21 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="41" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<textField>
-				<reportElement x="436" y="11" width="86" height="20" uuid="d3c51e08-1800-441b-b7c9-e949a18b8f0c"/>
+				<reportElement x="436" y="8" width="86" height="20" uuid="d3c51e08-1800-441b-b7c9-e949a18b8f0c"/>
 				<textFieldExpression><![CDATA[$F{JOBS_MAX_SALARY}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="312" y="11" width="84" height="20" uuid="2e884408-c707-4c52-a650-422f2e9d7762"/>
+				<reportElement x="312" y="8" width="84" height="20" uuid="2e884408-c707-4c52-a650-422f2e9d7762"/>
 				<textFieldExpression><![CDATA[$F{JOBS_MIN_SALARY}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="142" y="11" width="121" height="20" uuid="bafd9fff-b96c-4679-ba02-f071c1774e2f"/>
+				<reportElement x="142" y="8" width="121" height="20" uuid="bafd9fff-b96c-4679-ba02-f071c1774e2f"/>
 				<textFieldExpression><![CDATA[$F{JOBS_JOB_TITLE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="17" y="11" width="77" height="20" uuid="e6e3ce1c-af62-4b5e-b3be-403b3442b420"/>
+				<reportElement x="17" y="8" width="77" height="20" uuid="e6e3ce1c-af62-4b5e-b3be-403b3442b420"/>
 				<textFieldExpression><![CDATA[$F{JOBS_JOB_ID}]]></textFieldExpression>
 			</textField>
 			<line>
