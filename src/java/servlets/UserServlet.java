@@ -9,6 +9,7 @@ import dao.GenericDao;
 import dao.IGeneric;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.Properties;
 import javax.activation.DataHandler;
@@ -32,6 +33,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Useraccount;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import tools.BCrypt;
 
 /**
@@ -202,14 +207,15 @@ public class UserServlet extends HttpServlet {
             Address address = new InternetAddress(from);
             message.setFrom(address);
             message.setSubject(sub);
-            BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText(msg);
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(messageBodyPart);
-            messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setDataHandler(new DataHandler(new FileDataSource(filename)));
-            multipart.addBodyPart(messageBodyPart);
-            message.setContent(multipart);
+            message.setContent(filename, "text/html; charset=utf-8");
+//            BodyPart messageBodyPart = new MimeBodyPart();
+//            messageBodyPart.setText(msg);
+//            Multipart multipart = new MimeMultipart();
+//            multipart.addBodyPart(messageBodyPart);
+//            messageBodyPart = new MimeBodyPart();
+//            messageBodyPart.setDataHandler(new DataHandler(new FileDataSource(filename)));
+//            multipart.addBodyPart(messageBodyPart);
+//            message.setContent(multipart);
             //send message
 
             Transport.send(message);
@@ -242,7 +248,49 @@ public class UserServlet extends HttpServlet {
         } else if (getUsername(username)) {
             alert(request, response, "Username has already", "error", "registerview.jsp");
         } else {
-            String htmlFile = "C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\templateRegister.html";
+            
+                        
+         /*
+         *   first, get and initialize an engine
+         */
+
+        VelocityEngine ve = new VelocityEngine();
+        ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+        ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        ve.init();
+
+        /*
+         *  add that list to a VelocityContext
+         */
+
+        VelocityContext context = new VelocityContext();
+        context.put("username", username);
+        context.put("loginLink", "http://localhost:8084/HR-Web/loginview.jsp");
+        context.put("confirmationLink", "http://localhost:8084/HR-Web/loginview.jsp");
+        context.put("resetPasswordLink", "http://localhost:8084/HR-Web/loginview.jsp");
+
+        /*
+         *   get the Template  
+         */
+        org.apache.velocity.Template t = ve.getTemplate("templateMail/registerConfirmation.vm");
+
+        /*
+         *  now render the template into a Writer, here 
+         *  a StringWriter 
+         */
+
+        StringWriter writer = new StringWriter();
+
+        t.merge( context, writer );
+
+        /*
+         *  use the output in the body of your emails
+         */
+
+        System.out.println( writer.toString() );
+        String htmlFile = writer.toString();
+        
+//            String htmlFile = "C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\templateRegister.html";
             String message = "click to confirm account : " + "http://localhost:8084/HR-Web/confirmview.jsp?username=" + username;
             send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Confirm Account", message, htmlFile);
             String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
