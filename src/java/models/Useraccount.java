@@ -45,6 +45,14 @@ public class Useraccount implements Serializable {
     public Useraccount() {
     }
 
+    public Useraccount(String username, String password, Character status, String firstname, String lastname) {
+        this.username = username;
+        this.password = password;
+        this.status = status;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     public Useraccount(String username) {
         this.username = username;
     }

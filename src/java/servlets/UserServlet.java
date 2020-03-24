@@ -12,20 +12,13 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
 import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
 import javax.mail.Address;
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +26,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Useraccount;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
@@ -86,7 +82,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        save(request, response);
     }
 
     /**
@@ -183,7 +179,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    public static void send(String from, String password, String to, String sub, String msg, String filename) {
+    public static void send(String from, String password, String to, String sub, String filename) {
         //Get properties object    
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -228,9 +224,20 @@ public class UserServlet extends HttpServlet {
     public void sendForgot(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
         if (getUsername(username) && getStatus(username)) {
-            String htmlFile = "C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\templateResetPassword.html";
-            String message = "click to reset password : " + "http://localhost:8084/HR-Web/forgotview.jsp?username=" + username;
-            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "reset password", message, htmlFile);
+            String[] name = getName(username).split(" ");
+            VelocityEngine ve = new VelocityEngine();
+            ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+            ve.init();
+            VelocityContext context = new VelocityContext();
+            context.put("lastname", name[1]);
+            context.put("loginLink", "http://localhost:8084/HR-Web/loginview.jsp?username=" + username);
+            context.put("resetPasswordLink", "http://localhost:8084/HR-Web/forgotview.jsp?username=" + username);
+            org.apache.velocity.Template t = ve.getTemplate("templateMail/resetPassword.vm");
+            StringWriter writer = new StringWriter();
+            t.merge(context, writer);
+            String htmlFile = writer.toString();
+            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Reset password", htmlFile);
             alert(request, response, "please check your email to check your password", "success", "loginview.jsp");
         } else if (getUsername(username) && (!getStatus(username))) {
             alert(request, response, "Your account is not activated", "error", "loginview.jsp");
@@ -241,6 +248,8 @@ public class UserServlet extends HttpServlet {
     }
 
     public void sendConfirm(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String firstname = request.getParameter("firstname").trim();
+        String lastname = request.getParameter("lastname").trim();
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password");
         if (username.isEmpty() || password.isEmpty()) {
@@ -248,53 +257,21 @@ public class UserServlet extends HttpServlet {
         } else if (getUsername(username)) {
             alert(request, response, "Username has already", "error", "registerview.jsp");
         } else {
-            
-                        
-         /*
-         *   first, get and initialize an engine
-         */
-
-        VelocityEngine ve = new VelocityEngine();
-        ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-        ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
-        ve.init();
-
-        /*
-         *  add that list to a VelocityContext
-         */
-
-        VelocityContext context = new VelocityContext();
-        context.put("username", username);
-        context.put("loginLink", "http://localhost:8084/HR-Web/loginview.jsp");
-        context.put("confirmationLink", "http://localhost:8084/HR-Web/loginview.jsp");
-        context.put("resetPasswordLink", "http://localhost:8084/HR-Web/loginview.jsp");
-
-        /*
-         *   get the Template  
-         */
-        org.apache.velocity.Template t = ve.getTemplate("templateMail/registerConfirmation.vm");
-
-        /*
-         *  now render the template into a Writer, here 
-         *  a StringWriter 
-         */
-
-        StringWriter writer = new StringWriter();
-
-        t.merge( context, writer );
-
-        /*
-         *  use the output in the body of your emails
-         */
-
-        System.out.println( writer.toString() );
-        String htmlFile = writer.toString();
-        
-//            String htmlFile = "C:\\Users\\amry4\\OneDrive\\Dokumen\\NetBeansProjects\\ProjectHRWeb\\HR-Web\\web\\templateRegister.html";
-            String message = "click to confirm account : " + "http://localhost:8084/HR-Web/confirmview.jsp?username=" + username;
-            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Confirm Account", message, htmlFile);
+            VelocityEngine ve = new VelocityEngine();
+            ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+            ve.init();
+            VelocityContext context = new VelocityContext();
+            context.put("lastname", lastname);
+            context.put("loginLink", "http://localhost:8084/HR-Web/loginview.jsp?username=" + username);
+            context.put("confirmationLink", "http://localhost:8084/HR-Web/userservlet?username=" + username);
+            org.apache.velocity.Template t = ve.getTemplate("templateMail/registerConfirmation.vm");
+            StringWriter writer = new StringWriter();
+            t.merge(context, writer);
+            String htmlFile = writer.toString();
+            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Confirm Account", htmlFile);
             String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
-            generic.manageData(new Useraccount(username, pw_hash, 'N'), "", "", new String(), true, false);
+            generic.manageData(new Useraccount(username, pw_hash, 'N', firstname, lastname), "", "", new String(), true, false);
             alert(request, response, "Please check your email for confirm account", "success", "loginview.jsp");
         }
     }
@@ -323,15 +300,17 @@ public class UserServlet extends HttpServlet {
 
     public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
-        generic.manageData(new Useraccount(username, getPassword(username), 'Y'), "", "", new String(), true, false);
-        alert(request, response, "Data has been saved", "success", "confirmview.jsp");
+        String[] name = getName(username).split(" ");
+        generic.manageData(new Useraccount(username, getPassword(username), 'Y', name[0], name[1]), "", "", new String(), true, false);
+        alert(request, response, "Data has been saved", "success", "loginview.jsp");
     }
 
     public void savePassword(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password");
+        String[] name = getName(username).split(" ");
         String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
-        generic.manageData(new Useraccount(username, pw_hash, 'Y'), "", "", new String(), true, false);
+        generic.manageData(new Useraccount(username, pw_hash, 'Y', name[0], name[1]), "", "", new String(), true, false);
         alert(request, response, "Password has been saved", "success", "loginview.jsp");
     }
 

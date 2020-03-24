@@ -41,6 +41,12 @@
                 <p class="text-muted">Please enter your data correctly</p>
                 <form id="loginForm" name="myForm" required action="${pageContext.servletContext.contextPath}/userservlet?verify" method="POST" class="mt-4">
                     <div class="form-group mb-4">
+                        <input type="text" id="firstname" name="firstname" placeholder="Firstname" class="form-control border-0 shadow form-control-lg validate">
+                    </div>
+                    <div class="form-group mb-4">
+                        <input type="text" id="lastname" name="lastname" placeholder="Lastname" class="form-control border-0 shadow form-control-lg validate">
+                    </div>
+                    <div class="form-group mb-4">
                         <input type="email" id="username" name="username" placeholder="Email address" class="form-control border-0 shadow form-control-lg validate">
                     </div>
                     <div class="form-group mb-4">

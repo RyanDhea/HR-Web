@@ -107,12 +107,24 @@ public class CountryServlet extends HttpServlet {
         String name = request.getParameter("name");
         String region = request.getParameter("region");
         generic.manageData(new Country(id, name, new Region(new BigDecimal(region))), "", "", new String(), true, false);
+        alert(request, response, "Data has been saved");
+
+    }
+
+    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String id = request.getParameter("id");
+        generic.manageData(new Country(id), "", "", id, true, true);
+        alert(request, response, "Data has been deleted");
+
+    }
+
+    public void alert(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
         out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
         out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
         out.println("<script>");
         out.println("$(document).ready(function () {");
-        out.println("swal ( 'Data has been saved' ,  ' ' ,  'success' ).then(function() {\n"
+        out.println("swal ( '" + msg + "' ,  ' ' ,  'success' ).then(function() {\n"
                 + "    window.location = 'countryview.jsp';\n"
                 + "});");
         out.println("$  });");
@@ -120,18 +132,26 @@ public class CountryServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/countryview.jsp");
         rd.include(request, response);
     }
-   public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String id = request.getParameter("id");
-        generic.manageData(new Country(id), "", "", id, true, true);
+
+    public void confrimAlert(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
         out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
         out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
         out.println("<script>");
         out.println("$(document).ready(function () {");
-        out.println("swal ( 'Data has been deleted' ,  ' ' ,  'success' ).then(function() {\n"
-                + "    window.location = 'countryview.jsp';\n"
-                + "});");
-        out.println("$  });");
+        out.println("Swal.fire({\n"
+                + "  title: 'Are you sure ?',\n"
+                + "  text: \"You won't be able to revert this!\",\n"
+                + "  icon: 'warning',\n"
+                + "  showCancelButton: true,\n"
+                + "  confirmButtonColor: '#3085d6',\n"
+                + "  cancelButtonColor: '#d33',\n"
+                + "  confirmButtonText: 'Yes, delete it!'\n"
+                + "}).then((result) => {\n"
+                + "  if (result.value) {\n");
+        delete(request, response);
+        out.println("  }\n");
+        out.println( "})");
         out.println("</script>");
         RequestDispatcher rd = request.getRequestDispatcher("/countryview.jsp");
         rd.include(request, response);

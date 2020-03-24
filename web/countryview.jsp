@@ -111,7 +111,7 @@
     </form>
 
     <!-- The Modal Delete -->
-    <form action="${pageContext.servletContext.contextPath}/countryservlet?delete" method="post" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form action="${pageContext.servletContext.contextPath}/countryservlet?cofirmAlert" method="post" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
