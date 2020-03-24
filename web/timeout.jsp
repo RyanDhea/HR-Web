@@ -11,7 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <h1>TIME OUT</h1>
-    </body>
+        <h1>REQUEST TIME OUT</h1>
+        <h3>Click <a href="loginview.jsp">here</a> to reset your password again.</h3>
 </html>

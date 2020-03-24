@@ -82,7 +82,9 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        save(request, response);
-        checkTime(request, response);
+        System.out.println(request.getQueryString());
+        checkTimeReset(request, response);
+        checkTimeActivated(request, response);
     }
 
     /**
@@ -158,6 +160,9 @@ public class UserServlet extends HttpServlet {
 
     public long getDate(String username) {
         listUser = generic.manageData(new Useraccount(), "username", username, new String(), false, false);
+        if (listUser.get(0).getTimer() == null) {
+            return 0;
+        }
         return listUser.get(0).getTimer().getTime();
     }
 
@@ -237,18 +242,15 @@ public class UserServlet extends HttpServlet {
             Date date = new Date();
             long time = date.getTime();
             Timestamp ts = new Timestamp(time);
-            long m = 5 * 60 * 1000;
-            Timestamp theNewTimestamp = new Timestamp(time + m);
             VelocityContext context = new VelocityContext();
             context.put("lastname", name[1]);
             context.put("loginLink", "http://localhost:8084/HR-Web/loginview.jsp?username=" + username);
-            context.put("resetPasswordLink", "http://localhost:8084/HR-Web/userservlet?checkTime&username=" + username);
+            context.put("resetPasswordLink", "http://localhost:8084/HR-Web/userservlet?checkTimeReset&username=" + username);
             context.put("date", "30 minutes");
             org.apache.velocity.Template t = ve.getTemplate("templateMail/resetPassword.vm");
             StringWriter writer = new StringWriter();
             t.merge(context, writer);
             String htmlFile = writer.toString();
-
             send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Reset password " + time, htmlFile);
             generic.manageData(new Useraccount(username, getPassword(username), 'Y', name[0], name[1], ts), "", "", new String(), true, false);
             alert(request, response, "please check your email to check your password", "success", "loginview.jsp");
@@ -273,17 +275,21 @@ public class UserServlet extends HttpServlet {
             ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
             ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
             ve.init();
+            Date date = new Date();
+            long time = date.getTime();
+            Timestamp ts = new Timestamp(time);
             VelocityContext context = new VelocityContext();
             context.put("lastname", lastname);
             context.put("loginLink", "http://localhost:8084/HR-Web/loginview.jsp?username=" + username);
-            context.put("confirmationLink", "http://localhost:8084/HR-Web/userservlet?username=" + username);
+            context.put("confirmationLink", "http://localhost:8084/HR-Web/userservlet?checkTimeActivated&username=" + username);
+            context.put("date", "30 minutes");
             org.apache.velocity.Template t = ve.getTemplate("templateMail/registerConfirmation.vm");
             StringWriter writer = new StringWriter();
             t.merge(context, writer);
             String htmlFile = writer.toString();
-            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Confirm Account", htmlFile);
+            send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Confirm Account "+time, htmlFile);
             String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
-            generic.manageData(new Useraccount(username, pw_hash, 'N', firstname, lastname, null), "", "", new String(), true, false);
+            generic.manageData(new Useraccount(username, pw_hash, 'N', firstname, lastname, ts), "", "", new String(), true, false);
             alert(request, response, "Please check your email for confirm account", "success", "loginview.jsp");
         }
     }
@@ -303,7 +309,6 @@ public class UserServlet extends HttpServlet {
 
             } else {
                 alert(request, response, "You missed the Captcha", "error", "registerview.jsp");
-
             }
         }
     }
@@ -324,19 +329,43 @@ public class UserServlet extends HttpServlet {
         alert(request, response, "Password has been saved", "success", "loginview.jsp");
     }
 
-    public void checkTime(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void checkTimeReset(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
-        int minutes = 5;
+        int minutes = 30;
         long m = minutes * 60 * 1000;
         long t = getDate(username);
-        Timestamp theNewTimestamp = new Timestamp(t + m);
-        Date date = new Date();
-        long time = date.getTime();
-        if (theNewTimestamp.getTime() > time) {
-            response.sendRedirect("forgotview.jsp?username=" + username);
+        if (t == 0) {
+            alert(request, response, "your password has been reset", "success", "loginview.jsp");
         } else {
-            response.sendRedirect("timeout.jsp");
+            Timestamp theNewTimestamp = new Timestamp(t + m);
+            Date date = new Date();
+            long time = date.getTime();
+            if (theNewTimestamp.getTime() > time) {
+                response.sendRedirect("forgotview.jsp?username=" + username);
+            } else {
+                response.sendRedirect("timeout.jsp");
+            }
         }
+    }
+
+    public void checkTimeActivated(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String username = request.getParameter("username").trim();
+        int minutes = 30;
+        long m = minutes * 60 * 1000;
+        long t = getDate(username);
+        if (t == 0) {
+            alert(request, response, "your account has been activated", "success", "loginview.jsp");
+        } else {
+            Timestamp theNewTimestamp = new Timestamp(t + m);
+            Date date = new Date();
+            long time = date.getTime();
+            if (theNewTimestamp.getTime() > time) {
+                save(request, response);
+            } else {
+                response.sendRedirect("timeout.jsp");
+            }
+        }
+
     }
 
     public void alert(HttpServletRequest request, HttpServletResponse response, String msg, String type, String loc) throws IOException, ServletException {
