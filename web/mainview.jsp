@@ -24,12 +24,18 @@
         <link rel="stylesheet" href="css/custom.css">
         <link rel="shortcut icon" href="img/favicon.png?3">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src='Sweet_JS/sweetalert2.js'></script><script src="sweetalert2.all.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js"></script>
     </head>
+
     <body>
         <% String name = (String) session.getAttribute("currentSessionUser");
-            if(name == null){
+            if (name == null) {
                 response.sendRedirect("loginview.jsp");
-         } %>
+            }%>
         <!--<a id="alert" class="alert"></a>-->
         <!--        <script>
                     $(document).ready(function () {

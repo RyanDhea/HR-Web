@@ -98,31 +98,30 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="sidebar-list-item"><a href="" class="sidebar-link text-muted" type="submit" onclick="deleteAlert(event)" id="logout"  ><i class="o-exit-1 mr-3 text-gray" ></i><span >Logout</span></a></li>
+                    <li class="sidebar-list-item"><a href="" class="sidebar-link text-muted" type="submit" onclick="exitalert(event)" id="logout"  ><i class="o-exit-1 mr-3 text-gray" ></i><span >Logout</span></a></li>
                 </ul>
 
             </div>
     </body>
     <script>
-        $(function () {
-            $("#logout").on("click", function () {
-                $swal({
-                    title: "sure want to logout ?",
-                    text: "",
-                    type: "question",
-                    showCancelButton: true,
-                    confirmButtonColor: "#34E076",
-                    confirmButtonText: 'Yes, i am!',
-                    cancelButtonText: 'No thanks'
-                }
-                ).then(function (result) {
-                    setTimeout(function () {
-                        window.location = 'logoutview.jsp';
-                    }, 30);
-                });
-
-            });
-        });
+         function exitalert(event) {
+            event.preventDefault();
+            $("logout").submit(swal({
+                title: "sure want to delete ?",
+                text: "",
+                type: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#34E076",
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it'
+            }
+            ).then(function (result) {
+                setTimeout(function () {
+                    var formz = document.getElementById("logout");
+                    window.location = 'logoutview.jsp';
+                }, 30);
+            }));
+        }
         function deleteAlert(event) {
             event.preventDefault();
             $("#delete").submit(swal({
