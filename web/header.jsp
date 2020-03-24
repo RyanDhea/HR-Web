@@ -33,6 +33,9 @@
         <link rel="stylesheet" href="css/custom.css">
         <link rel="shortcut icon" href="img/favicon.png?3">
     </head>
+    <style>
+
+    </style>
     <body>
         <header class="header">
             <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a><a href="index.html" class="navbar-brand font-weight-bold text-uppercase text-base">Dashboard</a>
@@ -95,11 +98,48 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="sidebar-list-item" ><a href="logoutview.jsp" class="sidebar-link text-muted" onclick="cnfrm()"><i class="o-exit-1 mr-3 text-gray" ></i><span>Logout</span></a></li>
+                    <li class="sidebar-list-item"><a href="" class="sidebar-link text-muted" type="submit" onclick="deleteAlert(event)" id="logout"  ><i class="o-exit-1 mr-3 text-gray" ></i><span >Logout</span></a></li>
                 </ul>
+
             </div>
     </body>
     <script>
+        $(function () {
+            $("#logout").on("click", function () {
+                $swal({
+                    title: "sure want to logout ?",
+                    text: "",
+                    type: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#34E076",
+                    confirmButtonText: 'Yes, i am!',
+                    cancelButtonText: 'No thanks'
+                }
+                ).then(function (result) {
+                    setTimeout(function () {
+                        window.location = 'logoutview.jsp';
+                    }, 30);
+                });
 
+            });
+        });
+        function deleteAlert(event) {
+            event.preventDefault();
+            $("#delete").submit(swal({
+                title: "sure want to delete ?",
+                text: "",
+                type: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#34E076",
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it'
+            }
+            ).then(function (result) {
+                setTimeout(function () {
+                    var formz = document.getElementById("delete");
+                    formz.submit();
+                }, 30);
+            }));
+        }
     </script>
 </html>

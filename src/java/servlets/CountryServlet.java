@@ -133,25 +133,30 @@ public class CountryServlet extends HttpServlet {
         rd.include(request, response);
     }
 
-    public void confrimAlert(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException, ServletException {
+    public void confrimAlert(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
         out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
         out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
         out.println("<script>");
         out.println("$(document).ready(function () {");
-        out.println("Swal.fire({\n"
-                + "  title: 'Are you sure ?',\n"
-                + "  text: \"You won't be able to revert this!\",\n"
-                + "  icon: 'warning',\n"
-                + "  showCancelButton: true,\n"
-                + "  confirmButtonColor: '#3085d6',\n"
-                + "  cancelButtonColor: '#d33',\n"
-                + "  confirmButtonText: 'Yes, delete it!'\n"
-                + "}).then((result) => {\n"
-                + "  if (result.value) {\n");
-        delete(request, response);
+        out.println("$(\"#delete\").submit(swal({\n" +
+"                title: \"sure want to delete ?\",\n" +
+"                text: \"\",\n" +
+"                type: \"question\",\n" +
+"                showCancelButton: true,\n" +
+"                confirmButtonColor: \"#34E076\",\n" +
+"                confirmButtonText: 'Yes, delete it!',\n" +
+"                cancelButtonText: 'No, keep it'\n" +
+"            }\n" +
+"            ).then(function (result) {\n" +
+"                setTimeout(function () {\n" +
+"                    var formz = document.getElementById(\"delete\");\n" +
+"                    formz.submit();\n" +
+"                }, 30);\n" +
+"            }));\n");
+//        delete(request, response);
         out.println("  }\n");
-        out.println( "})");
+        out.println( ")");
         out.println("</script>");
         RequestDispatcher rd = request.getRequestDispatcher("/countryview.jsp");
         rd.include(request, response);

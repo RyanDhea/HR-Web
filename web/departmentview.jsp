@@ -144,7 +144,7 @@
                     <input type="text" readonly id="iddelete" name="id" class="form-control validate">
                     
                     <div style="text-align: right; padding-top: 20px;">
-                        <button class="btn btn-warning" type="submit">Delete</button>
+                        <button onclick="deleteAlert(event)" class="btn btn-warning" type="submit">Delete</button>
                     </div>
                 </div>
             </div>
