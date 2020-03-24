@@ -158,18 +158,17 @@ public class UserServlet extends HttpServlet {
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
-        String name = getName(username);
-        System.out.println(getUsername(username));
         try {
             if (username.isEmpty() || password.isEmpty()) {
-                errorAlert(request, response, "field cannot empty");
+                alert(request, response, "field cannot empty", "error", "loginview.jsp");
             } else if (!getUsername(username)) {
-                errorAlert(request, response, "email not found");
+                alert(request, response, "email not found", "error", "loginview.jsp");
             } else if (!BCrypt.checkpw(password, getPassword(username))) {
-                errorAlert(request, response, "wrong password");
+                alert(request, response, "wrong password", "error", "loginview.jsp");
             } else if (!getStatus(username)) {
-                errorAlert(request, response, "account not activated");
+                alert(request, response, "account not activated", "error", "loginview.jsp");
             } else {
+                String name = getName(username);
                 HttpSession session = request.getSession();
                 session.setAttribute("currentSessionUser", name);
                 response.sendRedirect("mainview.jsp");
@@ -179,20 +178,6 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    public void errorAlert(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException, ServletException {
-        PrintWriter out = response.getWriter();
-        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
-        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-        out.println("<script>");
-        out.println("$(document).ready(function () {");
-        out.println("swal ( '" + msg + "' ,  ' ' ,  'error' ).then(function() {\n"
-                + "    window.location = 'loginview.jsp';\n"
-                + "});");
-        out.println("$  });");
-        out.println("</script>");
-        RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
-        rd.include(request, response);
-    }
     public static void send(String from, String password, String to, String sub, String msg, String filename) {
         //Get properties object    
         Properties props = new Properties();
@@ -240,44 +225,12 @@ public class UserServlet extends HttpServlet {
             String htmlFile = "D:\\METRODATA\\Tugas\\HR-Web\\web\\templateResetPassword.html";
             String message = "click to reset password : " + "http://localhost:8084/HR-Web/forgotview.jsp?username=" + username;
             send("bootcamp34mii@gmail.com", "Bootcamp34", username, "reset password", message, htmlFile);
-            PrintWriter out = response.getWriter();
-            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
-            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-            out.println("<script>");
-            out.println("$(document).ready(function () {");
-            out.println("swal ( 'please check your email to check your password' ,  ' ' ,  'success' ).then(function() {\n"
-                    + "    window.location = 'loginview.jsp';\n"
-                    + "});");
-            out.println("$  });");
-            out.println("</script>");
-            RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
-            rd.include(request, response);
+            alert(request, response, "please check your email to check your password", "success", "loginview.jsp");
         } else if (getUsername(username) && (!getStatus(username))) {
-            PrintWriter out = response.getWriter();
-            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
-            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-            out.println("<script>");
-            out.println("$(document).ready(function () {");
-            out.println("swal ( 'Your account is not activated' ,  ' ' ,  'error' ).then(function() {\n"
-                    + "    window.location = 'loginview.jsp';\n"
-                    + "});");
-            out.println("$  });");
-            out.println("</script>");
-            RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
-            rd.include(request, response);
+            alert(request, response, "Your account is not activated", "error", "loginview.jsp");
         } else {
             PrintWriter out = response.getWriter();
-            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
-            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-            out.println("<script>");
-            out.println("$(document).ready(function () {");
-            out.println("swal ( 'Email not found' ,  ' ' ,  'error' ).then(function() {\n"
-                    + "    window.location = 'loginview.jsp';\n"
-                    + "});");
-            out.println("$  });");
-            out.println("</script>");
-            RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
-            rd.include(request, response);
+            alert(request, response, "Email not found", "error", "loginview.jsp");
         }
     }
 
@@ -285,49 +238,16 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password");
         if (username.isEmpty() || password.isEmpty()) {
-            PrintWriter out = response.getWriter();
-            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
-            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-            out.println("<script>");
-            out.println("$(document).ready(function () {");
-            out.println("swal ( 'Field cannot Empty' ,  ' ' ,  'error' ).then(function() {\n"
-                    + "    window.location = 'registerview.jsp';\n"
-                    + "});");
-            out.println("$  });");
-            out.println("</script>");
-            RequestDispatcher rd = request.getRequestDispatcher("/registerview.jsp");
-            rd.include(request, response);
+            alert(request, response, "Field cannot Empty", "error", "registerview.jsp");
         } else if (getUsername(username)) {
-            PrintWriter out = response.getWriter();
-            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
-            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-            out.println("<script>");
-            out.println("$(document).ready(function () {");
-            out.println("swal ( 'Username has already' ,  ' ' ,  'error' ).then(function() {\n"
-                    + "    window.location = 'registerview.jsp';\n"
-                    + "});");
-            out.println("$  });");
-            out.println("</script>");
-            RequestDispatcher rd = request.getRequestDispatcher("/registerview.jsp");
-            rd.include(request, response);
+            alert(request, response, "Username has already", "error", "registerview.jsp");
         } else {
             String htmlFile = "D:\\METRODATA\\Tugas\\HR-Web\\web\\templateRegister.html";
             String message = "click to confirm account : " + "http://localhost:8084/HR-Web/confirmview.jsp?username=" + username;
             send("bootcamp34mii@gmail.com", "Bootcamp34", username, "Confirm Account", message, htmlFile);
             String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
             generic.manageData(new Useraccount(username, pw_hash, 'N'), "", "", new String(), true, false);
-            PrintWriter out = response.getWriter();
-            out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
-            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-            out.println("<script>");
-            out.println("$(document).ready(function () {");
-            out.println("swal ( 'Please check your email for confirm account' ,  ' ' ,  'success' ).then(function() {\n"
-                    + "    window.location = 'loginview.jsp';\n"
-                    + "});");
-            out.println("$  });");
-            out.println("</script>");
-            RequestDispatcher rd = request.getRequestDispatcher("/loginview.jsp");
-            rd.include(request, response);
+            alert(request, response, "Please check your email for confirm account", "success", "loginview.jsp");
         }
     }
 
@@ -343,32 +263,20 @@ public class UserServlet extends HttpServlet {
         if (username.equals(username) && password.equals(password) && verify) {
             sendConfirm(request, response);
         } else {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/registerview.jsp");
-            PrintWriter out = response.getWriter();
             if (verify) {
-                out.println("<font color=red>Either user name or password is wrong.</font>");
+                alert(request, response, "Either user name or password is wrong", "error", "registerview.jsp");
+
             } else {
-                out.println("<font color=red>You missed the Captcha.</font>");
+                alert(request, response, "You missed the Captcha", "error", "registerview.jsp");
+
             }
-            rd.include(request, response);
         }
     }
 
     public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
         generic.manageData(new Useraccount(username, getPassword(username), 'Y'), "", "", new String(), true, false);
-        PrintWriter out = response.getWriter();
-        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
-        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-        out.println("<script>");
-        out.println("$(document).ready(function () {");
-        out.println("swal ( 'Data has been saved' ,  ' ' ,  'success' ).then(function() {\n"
-                + "    window.location = 'loginview.jsp';\n"
-                + "});");
-        out.println("$  });");
-        out.println("</script>");
-        RequestDispatcher rd = request.getRequestDispatcher("/confirmview.jsp");
-        rd.include(request, response);
+        alert(request, response, "Data has been saved", "success", "confirmview.jsp");
     }
 
     public void savePassword(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -376,6 +284,21 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
         generic.manageData(new Useraccount(username, pw_hash, 'Y'), "", "", new String(), true, false);
-        response.sendRedirect("loginview.jsp");
+        alert(request, response, "Password has been saved", "success", "loginview.jsp");
+    }
+
+    public void alert(HttpServletRequest request, HttpServletResponse response, String msg, String type, String loc) throws IOException, ServletException {
+        PrintWriter out = response.getWriter();
+        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+        out.println("<script>");
+        out.println("$(document).ready(function () {");
+        out.println("swal ( '" + msg + "' ,  ' ' ,  '" + type + "' ).then(function() {\n"
+                + "    window.location = '" + loc + "';\n"
+                + "});");
+        out.println("$  });");
+        out.println("</script>");
+        RequestDispatcher rd = request.getRequestDispatcher(loc);
+        rd.include(request, response);
     }
 }
