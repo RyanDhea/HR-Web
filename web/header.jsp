@@ -43,8 +43,8 @@
         abbr[data-title]:focus::after {
             content: attr(data-title);
             position: absolute;
-            left: 45%;
-            top: 18px;
+            left: 50%;
+            top: -22px;
             transform: translateX(5%);
             width: auto;
             white-space: nowrap;
