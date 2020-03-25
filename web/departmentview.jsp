@@ -41,8 +41,8 @@
                         <td class="name"><%= d.getDepartmentName()%></td>
                         <td class="manager"><%= (d.getManagerId() == null) ? "-" : d.getManagerId().getLastName()%></td>
                         <td class="location"><%= (d.getLocationId() == null) ? "-" : d.getLocationId().getCity()%></td>
-                        <td><a data-target="#update" data-toggle="modal" type="button" class="btn confirm" style="color: blue;"><i class="fa fa-edit"></i></a>
-                            <a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a>
+                        <td> <abbr class="tooltipedit" data-title="Edit Data"><a data-target="#update" data-toggle="modal" type="button" class="btn confirm " style="color: blue;"><i class="fa fa-edit"></i></a></abbr>
+                            <abbr class="tooltipdelete" data-title="Delete Data"><a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a></abbr>
                         </td>
                     </tr>
                     <% };%>
@@ -142,7 +142,7 @@
                 <div class="modal-body mx-3 md-form mb-1">
                     <label data-error="wrong" data-success="right" for="form1">Department Id</label>
                     <input type="text" readonly id="iddelete" name="id" class="form-control validate">
-                    
+
                     <div style="text-align: right; padding-top: 20px;">
                         <button  class="btn btn-warning" type="submit">Delete</button>
                     </div>
@@ -157,23 +157,23 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/autofill/2.3.4/css/autoFill.bootstrap4.min.css"></script>
 <script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            dom: '<"top"f>rt<"bottom right"p><"clear">'
-        });
-    });
-    $(".confirm").click(function () {
-        var row = $(this).closest("tr");
-        var id = row.find(".id").text();
-        var name = row.find(".name").text();
-        var manager = row.find(".manager").text();
-        var location = row.find(".location").text();
-        var iddelete = row.find(".id").text();
-        document.getElementById("id").value = id;
-        document.getElementById("name").value = name;
-        document.getElementById("iddelete").value = iddelete;
-        $("#manager option:contains(" + manager + ")").attr("selected", true);
-        $("#location option:contains(" + location + ")").attr("selected", true);
-    });
+                                $(document).ready(function () {
+                                    var table = $('#example').DataTable({
+                                        dom: '<"top"f>rt<"bottom right"p><"clear">'
+                                    });
+                                });
+                                $(".confirm").click(function () {
+                                    var row = $(this).closest("tr");
+                                    var id = row.find(".id").text();
+                                    var name = row.find(".name").text();
+                                    var manager = row.find(".manager").text();
+                                    var location = row.find(".location").text();
+                                    var iddelete = row.find(".id").text();
+                                    document.getElementById("id").value = id;
+                                    document.getElementById("name").value = name;
+                                    document.getElementById("iddelete").value = iddelete;
+                                    $("#manager option:contains(" + manager + ")").attr("selected", true);
+                                    $("#location option:contains(" + location + ")").attr("selected", true);
+                                });
 </script>
 </html>

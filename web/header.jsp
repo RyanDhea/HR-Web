@@ -34,7 +34,41 @@
         <link rel="shortcut icon" href="img/favicon.png?3">
     </head>
     <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        abbr[data-title] {
+            position: relative;
+            text-decoration: underline dotted; 
+        }
+        abbr[data-title]:hover::after,
+        abbr[data-title]:focus::after {
+            content: attr(data-title);
+            position: absolute;
+            left: 45%;
+            top: 18px;
+            transform: translateX(5%);
+            width: auto;
+            white-space: nowrap;
 
+            color: #fff;
+            border-radius: 2px;
+            box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.4);
+            font-size: 14px;
+            padding: 3px 5px;
+        }
+        .tooltipdelete::after {
+            content: attr(data-text);
+            background: #A52A2A;
+        }
+        .tooltipedit::after
+        {
+            content: attr(data-text);
+            background: #1568c5;
+        }
+        .tooltipview::after
+        {
+            content: attr(data-text);
+            background: #F4A460;
+        }
     </style>
     <body>
         <header class="header">
@@ -63,7 +97,7 @@
                             <a href="profileview.jsp" class="dropdown-item">Profile</a>
                             <a href="#" class="dropdown-item">Settings</a>
                             <a href="#" class="dropdown-item">Activity log</a>
-                            <div class="dropdown-divider"></div><a href="logoutview.jsp" class="dropdown-item" onclick="cnfrm()">Logout</a>
+                            <div class="dropdown-divider"></div><a href="" class="sidebar-link text-muted" type="submit" onclick="exitalert(event)" >Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -98,48 +132,50 @@
                             </ul>
                         </div>
                     </li>
-                            <form hidden="true" action="logoutview.jsp" method="post" id="logout"> <button hidden="true" class="btn btn-outline-danger " type="submit" ></button></form>
+                    <form hidden="true" action="logoutview.jsp" method="post" id="logout"> <button hidden="true" class="btn btn-outline-danger " type="submit" ></button></form>
                     <li class="sidebar-list-item"><a href="" class="sidebar-link text-muted" type="submit" onclick="exitalert(event)" ><i class="o-exit-1 mr-3 text-gray" ></i><span >Logout</span></a></li>
                 </ul>
 
             </div>
     </body>
+    
     <script>
-        function exitalert(event) {
-            event.preventDefault();
-            $("#logout").submit(swal({
-                title: "sure want to logout ?",
-                text: "",
-                type: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#34E076",
-                confirmButtonText: 'Yes, i am!',
-                cancelButtonText: 'No '
-            }
-            ).then(function (result) {
-                setTimeout(function () {
-                    var formz = document.getElementById("logout");
-                    formz.submit();
-                }, 30);
-            }));
-        }
-        function deleteAlert(event) {
-            event.preventDefault();
-            $("#delete").submit(swal({
-                title: "sure want to delete ?",
-                text: "",
-                type: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#34E076",
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, keep it'
-            }
-            ).then(function (result) {
-                setTimeout(function () {
-                    var formz = document.getElementById("delete");
-                    formz.submit();
-                }, 30);
-            }));
-        }
+                        function exitalert(event) {
+                            event.preventDefault();
+                            $("#logout").submit(swal({
+                                title: "sure want to logout ?",
+                                text: "",
+                                type: "question",
+                                showCancelButton: true,
+                                confirmButtonColor: "#34E076",
+                                confirmButtonText: 'Yes, i am!',
+                                cancelButtonText: 'No '
+                            }
+                            ).then(function (result) {
+                                setTimeout(function () {
+                                    var formz = document.getElementById("logout");
+                                    formz.submit();
+                                }, 30);
+                            }));
+                        }
+                        function deleteAlert(event) {
+                            event.preventDefault();
+                            $("#delete").submit(swal({
+                                title: "sure want to delete ?",
+                                text: "",
+                                type: "question",
+                                showCancelButton: true,
+                                confirmButtonColor: "#34E076",
+                                confirmButtonText: 'Yes, delete it!',
+                                cancelButtonText: 'No, keep it'
+                            }
+                            ).then(function (result) {
+                                setTimeout(function () {
+                                    var formz = document.getElementById("delete");
+                                    formz.submit();
+                                }, 30);
+                            }));
+                        }
     </script>
+
 </html>

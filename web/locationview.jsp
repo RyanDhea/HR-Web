@@ -43,8 +43,8 @@
                         <td class="city"><%= l.getCity()%></td>
                         <td class="province"><%= (l.getStateProvince() == null) ? "-" : l.getStateProvince()%></td>
                         <td class="country"><%= (l.getCountryId() == null) ? "-" : l.getCountryId().getCountryName()%></td>
-                        <td><a data-target="#update" data-toggle="modal" type="button" class="btn confirm" style="color: blue;"><i class="fa fa-edit"></i></a>
-                            <a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a>
+                        <td><abbr class="tooltipedit" data-title="Edit Data"><a data-target="#update" data-toggle="modal" type="button" class="btn confirm " style="color: blue;"><i class="fa fa-edit"></i></a></abbr>
+                            <abbr class="tooltipdelete" data-title="Delete Data"><a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a></abbr>
                         </td>
                     </tr>
                     <% }; %>

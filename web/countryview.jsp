@@ -37,8 +37,9 @@
                         <td class="id"><%= c.getCountryId()%></td>
                         <td class="name"><%= c.getCountryName()%></td>
                         <td class="region"><%= c.getRegionId().getRegionName()%></td>
-                        <td><a data-target="#update" data-toggle="modal" type="button" class="btn confirm" style="color: blue;"><i class="fa fa-edit"></i></a>
-                            <a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a>
+                        <td>
+                            <abbr class="tooltipedit" data-title="Edit Data"><a data-target="#update" data-toggle="modal" type="button" class="btn confirm " style="color: blue;"><i class="fa fa-edit"></i></a></abbr>
+                            <abbr class="tooltipdelete" data-title="Delete Data"><a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a></abbr>
                         </td>
                     </tr>
                     <% };%>
@@ -133,27 +134,24 @@
     </form>
 </body>
 <%@include file="footer.jsp" %>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/autofill/2.3.4/css/autoFill.bootstrap4.min.css"></script>
+
 <script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            dom: '<"top"f>rt<"bottom right"p><"clear">'
-        });
-    });
-    $(".confirm").click(function () {
-        var row = $(this).closest("tr");
-        var id = row.find(".id").text();
-        var name = row.find(".name").text();
-        var iddelete = row.find(".id").text();
-        var region = row.find(".region").text();
-        document.getElementById("id").value = id;
-        document.getElementById("name").value = name;
-        document.getElementById("iddelete").value = iddelete;
-        $("#region option:contains(" + region + ")").attr("selected", true);
-    });
-    
+                                $(document).ready(function () {
+                                    var table = $('#example').DataTable({
+                                        dom: '<"top"f>rt<"bottom right"p><"clear">'
+                                    });
+                                });
+                                $(".confirm").click(function () {
+                                    var row = $(this).closest("tr");
+                                    var id = row.find(".id").text();
+                                    var name = row.find(".name").text();
+                                    var iddelete = row.find(".id").text();
+                                    var region = row.find(".region").text();
+                                    document.getElementById("id").value = id;
+                                    document.getElementById("name").value = name;
+                                    document.getElementById("iddelete").value = iddelete;
+                                    $("#region option:contains(" + region + ")").attr("selected", true);
+                                });
+
 </script>
 </html>

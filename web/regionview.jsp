@@ -36,9 +36,9 @@
                     <tr>
                         <td class="txtid"><%= r.getRegionId()%></td>
                         <td class="txtname"><%= r.getRegionName()%></td>
-                        <td><a data-target="#update" data-toggle="modal" type="button" class="btn confirm" style="color: blue;"><i class="fa fa-edit"></i></a>
-                            <a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a></td>
-                    </tr>
+                        <td><abbr class="tooltipedit" data-title="Edit Data"><a data-target="#update" data-toggle="modal" type="button" class="btn confirm " style="color: blue;"><i class="fa fa-edit"></i></a></abbr>
+                            <abbr class="tooltipdelete" data-title="Delete Data"><a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a></abbr>
+                        </tr>
                     <% };%>
                 </tbody>
             </table>

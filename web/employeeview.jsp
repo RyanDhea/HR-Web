@@ -81,9 +81,9 @@
                         <td class="comm"><%= (e.getCommissionPct() == null) ? "-" : e.getCommissionPct()%></td></td>
                         <td class="manager"><%= (e.getManagerId() == null) ? "-" : e.getManagerId().getLastName()%></td>
                         <td class="department"><%= (e.getDepartmentId() == null) ? "-" : e.getDepartmentId().getDepartmentName()%></td>
-                        <td><a data-target="#view" data-toggle="modal" type="button" class="btn confirm" style="color: #ffc107;"><i class="fa fa-eye"></i></a>
-                            <a data-target="#update" data-toggle="modal" type="button" class="btn confirm" style="color: blue;"><i class="fa fa-edit"></i></a>
-                            <a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a>
+                        <td><abbr class="tooltipview" data-title="Edit Data"><a data-target="#view" data-toggle="modal" type="button" class="btn confirm" style="color: #ffc107;"><i class="fa fa-eye"></i></a></abbr>
+                            <abbr class="tooltipedit" data-title="Edit Data"><a data-target="#update" data-toggle="modal" type="button" class="btn confirm " style="color: blue;"><i class="fa fa-edit"></i></a></abbr>
+                            <abbr class="tooltipdelete" data-title="Delete Data"><a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a></abbr>
                         </td>
                     </tr>
                     <% };%>

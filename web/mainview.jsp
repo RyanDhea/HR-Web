@@ -16,7 +16,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="robots" content="all,follow">
-        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
         <link rel="stylesheet" href="css/orionicons.css">
@@ -28,7 +28,7 @@
         <script src='Sweet_JS/sweetalert2.js'></script><script src="sweetalert2.all.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js"></script>-->
     </head>
 
     <body>
@@ -143,12 +143,8 @@
                     </div>
                 </section>
             </div>
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/popper.js/umd/popper.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-            <script src="vendor/jquery.cookie/jquery.cookie.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-            <script src="js/front.js"></script>
+            
+           
     </body>
     <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
         <div class="container-fluid">
