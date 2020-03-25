@@ -5,26 +5,21 @@
  */
 package servlets;
 
-import dao.GenericDao;
-import dao.IGeneric;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Country;
-import models.Region;
 
 /**
  *
  * @author JOE
  */
-public class CountryServlet extends HttpServlet {
-
-    IGeneric<Country> generic = new GenericDao();
+@WebServlet(name = "alertServlet", urlPatterns = {"/alertservlet"})
+public class alertServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +38,10 @@ public class CountryServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CountryServlet</title>");
+            out.println("<title>Servlet alertServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CountryServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet alertServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,7 +59,7 @@ public class CountryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+    
     }
 
     /**
@@ -78,18 +73,7 @@ public class CountryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        switch (request.getQueryString()) {
-            case "save":
-                save(request, response);
-                break;
-            case "delete":
-                delete(request, response);
-                break;
-            default:
-                response.sendRedirect(request.getServletContext().getContextPath() + "/countryview.jsp");
-                break;
-        }
-        processRequest(request, response);
+//        processRequest(request, response);
     }
 
     /**
@@ -102,21 +86,18 @@ public class CountryServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        String region = request.getParameter("region");
-        generic.manageData(new Country(id, name, new Region(new BigDecimal(region))), "", "", new String(), true, false);
-//        alert(request, response, "Data has been saved");
-        alertServlet as = new alertServlet();
-        as.alert(request, response, "Data has been saved", "success", "countryview.jsp");
-    }
-
-    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String id = request.getParameter("id");
-        generic.manageData(new Country(id), "", "", id, true, true);
-        alertServlet as = new alertServlet();
-        as.alert(request, response, "Data has been deleted", "error", "countryview.jsp");
-
+      public void alert(HttpServletRequest request, HttpServletResponse response, String msg, String type, String loc) throws IOException, ServletException {
+        PrintWriter out = response.getWriter();
+        out.println("<script src='Sweet_JS/sweetalert2.js'></script>");
+        out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+        out.println("<script>");
+        out.println("$(document).ready(function () {");
+        out.println("swal ( '" + msg + "' ,  ' ' ,  '" + type + "' ).then(function() {\n"
+                + "    window.location = '" + loc + "';\n"
+                + "});");
+        out.println("$  });");
+        out.println("</script>");
+        RequestDispatcher rd = request.getRequestDispatcher(loc);
+        rd.include(request, response);
     }
 }

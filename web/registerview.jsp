@@ -31,31 +31,39 @@
         <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
         <link rel="stylesheet" href="css/custom.css">
         <link rel="shortcut icon" href="img/favicon.png?3">
+        <style>
+            input.empty {
+                box-shadow: 0 0.125rem 0.8rem rgba(240, 52, 52, 0.5);
+            }
+        </style>
     </head>
     <body class="container">
-        <div class="row" style="padding-top: 50px;">
+        <div class="row" style="padding-top: 25px;">
             <div class="col-3"></div>
             <div class="col-6 px-lg-4">
                 <h1 class="text-base text-primary text-uppercase mb-4">HR - Management</h1>
                 <h2 class="mb-4">User Account</h2>
-                <p class="text-muted">Please enter your data correctly</p>
                 <form id="loginForm" name="myForm" required action="${pageContext.servletContext.contextPath}/userservlet?verify" method="POST" class="mt-4">
                     <div class="form-group mb-4">
-                        <input type="text" id="firstname" name="firstname" placeholder="Firstname" class="form-control border-0 shadow form-control-lg validate">
+                        <input type="text" id="firstname" required name="firstname" pattern="\S+.*" placeholder="Firstname" class="form-control border-0 shadow form-control-lg validate">
                     </div>
                     <div class="form-group mb-4">
-                        <input type="text" id="lastname" name="lastname" placeholder="Lastname" class="form-control border-0 shadow form-control-lg validate">
+                        <input type="text" id="lastname" required name="lastname" pattern="\S+.*" placeholder="Lastname" class="form-control border-0 shadow form-control-lg validate">
                     </div>
                     <div class="form-group mb-4">
-                        <input type="email" id="username" name="username" placeholder="Email address" class="form-control border-0 shadow form-control-lg validate">
+                        <input type="email" id="username" required name="username" placeholder="Email address" class="form-control border-0 shadow form-control-lg validate">
                     </div>
                     <div class="form-group mb-4">
-                        <input type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" placeholder="Password" class="form-control border-0 shadow form-control-lg text-violet validate">
+                        <input type="password" onchange='check_pass();' id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" placeholder="Password" class="form-control border-0 shadow form-control-lg text-violet validate">
+                        <span style="float: right; padding-right: 30px; margin-top: -30px; position: relative; z-index: 2; color: #D3D3D3;" toggle="#password" id="toggle-password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <input type="password" onchange='check_pass();' id="confirm" name="confirm" placeholder="Confirm Password" class="form-control border-0 shadow form-control-lg text-violet validate">
                     </div>
                     <div class="form-group mb-4">
                         <div class="g-recaptcha validate" id="recaptcha" data-type="image" data-sitekey="6LdsNOMUAAAAABqKLZtM-SiNdA4hJQMEhE1Ik4C6"></div>
                     </div>
-                    <button type="submit" name="submit" id="submit" class="btn btn-primary shadow px-5">Save</button>
+                    <button type="submit" name="submit" onclick="myFunction()" id="submit" disabled id="submit" class="btn btn-primary shadow px-5">Save</button>
                     <div style="text-align: right">
                         <p>Already have an account? <a style="text-decoration: none;" href="loginview.jsp">Login</a></p>
                     </div>
@@ -64,4 +72,53 @@
             <div class="col-3"></div>
         </div>
     </body>
+    <script>
+        function myFunction() {
+            if (document.getElementById("firstname").value === "") {
+                var element = document.getElementById("firstname");
+                element.classList.remove("shadow");
+                element.classList.add("empty");
+            } else {
+                var element = document.getElementById("firstname");
+                element.classList.add("shadow");
+                element.classList.remove("empty");
+            }
+            if (document.getElementById("lastname").value === "") {
+                var element = document.getElementById("lastname");
+                element.classList.remove("shadow");
+                element.classList.add("empty");
+            } else {
+                var element = document.getElementById("lastname");
+                element.classList.add("shadow");
+                element.classList.remove("empty");
+            }
+            if (document.getElementById("username").value === "") {
+                var element = document.getElementById("username");
+                element.classList.remove("shadow");
+                element.classList.add("empty");
+            } else {
+                var element = document.getElementById("username");
+                element.classList.add("shadow");
+                element.classList.remove("empty");
+            }
+        }
+
+    </script>
+    <script>
+        $('#toggle-password').on('mousedown', function () {
+            $(this).toggleClass("fa-eye fa-eye");
+            var input = $($(this).attr("toggle"));
+            input.attr("type", "text");
+        }).on('mouseup', function () {
+            var input = $($(this).attr("toggle"));
+            input.attr("type", "password");
+        });
+        function check_pass() {
+            if (document.getElementById('password').value === document.getElementById('confirm').value) {
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('submit').disabled = true;
+            }
+        }
+    </script>
 </html>
