@@ -98,27 +98,28 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="sidebar-list-item"><a href="" class="sidebar-link text-muted" type="submit" onclick="exitalert(event)" id="logout"  ><i class="o-exit-1 mr-3 text-gray" ></i><span >Logout</span></a></li>
+                            <form hidden="true" action="logoutview.jsp" method="post" id="logout"> <button hidden="true" class="btn btn-outline-danger " type="submit" ></button></form>
+                    <li class="sidebar-list-item"><a href="" class="sidebar-link text-muted" type="submit" onclick="exitalert(event)" ><i class="o-exit-1 mr-3 text-gray" ></i><span >Logout</span></a></li>
                 </ul>
 
             </div>
     </body>
     <script>
-         function exitalert(event) {
+        function exitalert(event) {
             event.preventDefault();
-            $("logout").submit(swal({
-                title: "sure want to delete ?",
+            $("#logout").submit(swal({
+                title: "sure want to logout ?",
                 text: "",
                 type: "question",
                 showCancelButton: true,
                 confirmButtonColor: "#34E076",
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, keep it'
+                confirmButtonText: 'Yes, i am!',
+                cancelButtonText: 'No '
             }
             ).then(function (result) {
                 setTimeout(function () {
                     var formz = document.getElementById("logout");
-                    window.location = 'logoutview.jsp';
+                    formz.submit();
                 }, 30);
             }));
         }

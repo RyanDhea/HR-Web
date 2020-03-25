@@ -44,7 +44,7 @@
                         <td class="province"><%= (l.getStateProvince() == null) ? "-" : l.getStateProvince()%></td>
                         <td class="country"><%= (l.getCountryId() == null) ? "-" : l.getCountryId().getCountryName()%></td>
                         <td><a data-target="#update" data-toggle="modal" type="button" class="btn confirm" style="color: blue;"><i class="fa fa-edit"></i></a>
-                            <a data-target="#delete" data-toggle="modal" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a>
+                            <a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <% }; %>
@@ -139,7 +139,7 @@
     </form>
 
     <!-- The Modal Delete -->
-    <form action="${pageContext.servletContext.contextPath}/locationservlet?delete" method="post" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form hidden action="${pageContext.servletContext.contextPath}/locationservlet?delete" method="post" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -153,7 +153,7 @@
                     <input type="text" readonly id="iddelete" name="id" class="form-control validate">
 
                     <div style="text-align: right; padding-top: 20px;">
-                        <button onclick="deleteAlert(event)" class="btn btn-warning" type="submit">Delete</button>
+                        <button class="btn btn-warning" type="submit">Delete</button>
                     </div>
                 </div>
             </div>

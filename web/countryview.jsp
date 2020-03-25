@@ -38,7 +38,7 @@
                         <td class="name"><%= c.getCountryName()%></td>
                         <td class="region"><%= c.getRegionId().getRegionName()%></td>
                         <td><a data-target="#update" data-toggle="modal" type="button" class="btn confirm" style="color: blue;"><i class="fa fa-edit"></i></a>
-                            <a onclick="deleteAlert(event)" data-target="#delete" data-toggle="modal" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a>
+                            <a onclick="deleteAlert(event)" type="button" class="btn confirm" style="color: red;"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <% };%>
@@ -111,7 +111,7 @@
     </form>
 
     <!-- The Modal Delete -->
-    <form hidden action="${pageContext.servletContext.contextPath}/countryservlet?delete" method="post" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form hidden action="${pageContext.servletContext.contextPath}/countryservlet?delete" method="post"  id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
