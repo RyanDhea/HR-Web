@@ -74,35 +74,19 @@
     </body>
     <script>
         function myFunction() {
-            if (document.getElementById("firstname").value === "") {
-                var element = document.getElementById("firstname");
+            var nama = ["firstname", "lastname", "username"];
+                    nama.forEach(test);
+        }
+        function test(name) {
+            var element = document.getElementById(name);
+            if (document.getElementById(name).value === "") {
                 element.classList.remove("shadow");
                 element.classList.add("empty");
             } else {
-                var element = document.getElementById("firstname");
-                element.classList.add("shadow");
-                element.classList.remove("empty");
-            }
-            if (document.getElementById("lastname").value === "") {
-                var element = document.getElementById("lastname");
-                element.classList.remove("shadow");
-                element.classList.add("empty");
-            } else {
-                var element = document.getElementById("lastname");
-                element.classList.add("shadow");
-                element.classList.remove("empty");
-            }
-            if (document.getElementById("username").value === "") {
-                var element = document.getElementById("username");
-                element.classList.remove("shadow");
-                element.classList.add("empty");
-            } else {
-                var element = document.getElementById("username");
                 element.classList.add("shadow");
                 element.classList.remove("empty");
             }
         }
-
     </script>
     <script>
         $('#toggle-password').on('mousedown', function () {

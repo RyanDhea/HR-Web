@@ -32,6 +32,7 @@
                                 <div class="form-group">
                                     <label class="form-control-label text-uppercase">Password</label>
                                     <input type="password" placeholder="Enter password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" id="password" class="form-control">
+                                    <span style="float: right; padding-right: 30px; margin-top: -25px; position: relative; z-index: 2; color: #D3D3D3;" toggle="#password" id="toggle-password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label text-uppercase">Confirm Password</label>
@@ -59,6 +60,14 @@
             } else {
                 $('#message').html('Not Matching!').css('color', 'red');
             }
+        });
+        $('#toggle-password').on('mousedown', function () {
+            $(this).toggleClass("fa-eye fa-eye");
+            var input = $($(this).attr("toggle"));
+            input.attr("type", "text");
+        }).on('mouseup', function () {
+            var input = $($(this).attr("toggle"));
+            input.attr("type", "password");
         });
     </script>
 </html>

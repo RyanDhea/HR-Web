@@ -82,14 +82,12 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        save(request, response);
-        if (request.getQueryString().substring(0, 9).equals("checkTime1")) {
-            checkTime1(request, response);
-
+        if (request.getQueryString().substring(0, 10).equals("checkTime1")) {
+            checkTime(request, response, true, 1, "your password has been save");
         } else {
-            checkTime2(request, response);
-
+            checkTime(request, response, false, 1, "your account has been activated");
         }
-        System.out.println(request.getQueryString());
+        System.out.println((request.getQueryString().substring(0, 10)));
     }
 
     /**
@@ -123,7 +121,6 @@ public class UserServlet extends HttpServlet {
                 response.sendRedirect(request.getServletContext().getContextPath() + "/regionview.jsp");
                 break;
         }
-//        processRequest(request, response);
     }
 
     /**
@@ -219,16 +216,6 @@ public class UserServlet extends HttpServlet {
             message.setFrom(address);
             message.setSubject(sub);
             message.setContent(filename, "text/html; charset=utf-8");
-//            BodyPart messageBodyPart = new MimeBodyPart();
-//            messageBodyPart.setText(msg);
-//            Multipart multipart = new MimeMultipart();
-//            multipart.addBodyPart(messageBodyPart);
-//            messageBodyPart = new MimeBodyPart();
-//            messageBodyPart.setDataHandler(new DataHandler(new FileDataSource(filename)));
-//            multipart.addBodyPart(messageBodyPart);
-//            message.setContent(multipart);
-            //send message
-
             Transport.send(message);
             System.out.println("message sent successfully");
         } catch (MessagingException e) {
@@ -340,44 +327,31 @@ public class UserServlet extends HttpServlet {
         alert(request, response, "Password has been saved", "success", "loginview.jsp");
     }
 
-    public void checkTime1(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void checkTime(HttpServletRequest request, HttpServletResponse response, boolean isReset, long minutes, String msg) throws IOException, ServletException {
         String username = request.getParameter("username").trim();
-        int minutes = 30;
         long m = minutes * 60 * 1000;
         long t = getDate(username);
         if (t == 0) {
-            alert(request, response, "your password has been reset", "success", "loginview.jsp");
+            alert(request, response, msg, "success", "loginview.jsp");
         } else {
             Timestamp theNewTimestamp = new Timestamp(t + m);
             Date date = new Date();
             long time = date.getTime();
-            if (theNewTimestamp.getTime() > time) {
-                response.sendRedirect("forgotview.jsp?username=" + username);
+            boolean isTime = theNewTimestamp.getTime() > time;
+            if (isTime) {
+                if (isReset) {
+                    response.sendRedirect("forgotview.jsp?username=" + username);
+                } else {
+                    save(request, response);
+                }
             } else {
-                response.sendRedirect("timeout.jsp");
+                if (isReset) {
+                    response.sendRedirect("timeout.jsp");
+                } else {
+                    delete(request, response);
+                }
             }
         }
-    }
-
-    public void checkTime2(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String username = request.getParameter("username").trim();
-        int hour = 24;
-        int minutes = 60;
-        long m = hour * minutes * 60 * 1000;
-        long t = getDate(username);
-        if (t == 0) {
-            alert(request, response, "Your account has been activated", "success", "loginview.jsp");
-        } else {
-            Timestamp theNewTimestamp = new Timestamp(t + m);
-            Date date = new Date();
-            long time = date.getTime();
-            if (theNewTimestamp.getTime() > time) {
-                save(request, response);
-            } else {
-                delete(request, response);
-            }
-        }
-
     }
 
     public void alert(HttpServletRequest request, HttpServletResponse response, String msg, String type, String loc) throws IOException, ServletException {
